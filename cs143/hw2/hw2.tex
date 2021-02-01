@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{relsize}
+
+\title{CS 143 Homework 2}
+\date{1/18/2021}
+\author{Jiaping Zeng}
+
+\begin{document}
+\setstretch{1.35}
+\maketitle
+
+\begin{enumerate}
+    \item
+          \begin{enumerate}
+              \item SELECT company-name FROM Company\\WHERE NOT EXISTS\\(SELECT * FROM Work\\WHERE Work.company-name = Comapny.company-name AND salary$<$150000);
+              \item $\Pi_{company-name}(Company)-\Pi_{company-name}(\sigma_{salary<150000}(Work))$
+              \item The results should be identical because the logic is essentially the same.
+          \end{enumerate}
+    \item
+          \begin{enumerate}
+              \item SELECT person-name FROM Work\\WHERE NOT EXISTS (SELECT * FROM Work AS wcopy\\WHERE Work.salary$<$wcopy.salary);
+              \item SELECT DISTINCT Work.person-name FROM Work, Manage\\WHERE Work.person-name=Manage.manager-name\\AND SOME (SELECT * FROM Work AS wcopy, Manage AS mcopy\\WHERE Work.person-name=Manage.person-name AND Work.salary$>$wcopy.salary);
+          \end{enumerate}
+    \item
+          \begin{enumerate}
+              \item
+                    \begin{enumerate}
+                        \item SELECT name, address FROM MovieStar WHERE gender='F'\\INTERSECT\\SELECT name, address FROM MovieExec WHERE netWorth$>$1000000;
+                        \item SELECT MovieStar.name, MovieStar.address\\FROM MovieStar, MovieExec\\WHERE MovieStar.name=MovieExec.name AND netWorth$>$1000000;
+                    \end{enumerate}
+              \item
+                    \begin{enumerate}
+                        \item SELECT name FROM MovieStar\\EXCEPT\\SELECT name FROM MovieExec;
+                        \item SELECT name FROM MovieStar\\WHERE name NOT IN (SELECT name FROM MovieExec);
+                    \end{enumerate}
+          \end{enumerate}
+    \item
+          \begin{enumerate}
+              \item SELECT AVG(speed)\\FROM Desktop;
+              \item SELECT AVG(price)\\FROM ComputerProduct\\WHERE manufacturer = "Dell";
+              \item SELECT AVG(price)\\FROM ComputerProduct, Laptop\\WHERE ComputerProduct.model = Laptop.model AND weight$>$3;
+              \item SELECT speed, AVG(price)\\FROM ComputerProduct, (SELECT model, speed FROM Desktop UNION ALL SELECT model, speed FROM Laptop) AS Computer\\WHERE ComputerProduct.model = Computer.model\\GROUP BY speed;
+              \item SELECT manufacturer\\FROM ComputerProduct\\GROUP BY manufacturer\\HAVING COUNT(model)$>=$3;
+          \end{enumerate}
+    \item
+          \begin{enumerate}
+              \item INSERT INTO ComputerProduct VALUES("HP", 1100, 1000);\\INSERT INTO Desktop VALUES(1100, 1.2, 256, 40);
+              \item DELETE FROM Desktop\\WHERE model IN (SELECT model FROM ComputerProduct\\WHERE manufacturer="IBM" AND price$<$1000);\\DELETE FROM ComputerProduct\\WHERE manufacturer="IBM" AND price$<$1000;
+              \item UPDATE Laptop SET hdd=hdd-1\\WHERE model IN (SELECT model FROM ComputerProduct\\WHERE manufacturer="Gateway");
+          \end{enumerate}
+\end{enumerate}
+\end{document}

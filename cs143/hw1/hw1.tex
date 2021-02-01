@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{relsize}
+
+\title{CS 143 Homework 1}
+\date{1/13/2020}
+\author{Jiaping Zeng}
+
+\begin{document}
+\setstretch{1.35}
+\maketitle
+
+\begin{enumerate}
+    \item $(R-S)\cup(S-R)$
+          \begin{center}
+              \begin{tabular}{|c|c|c|}
+                  \hline
+                  A & B & C \\
+                  \hline
+                  7 & 5 & 3 \\
+                  1 & 4 & 3 \\
+                  6 & 7 & 9 \\
+                  1 & 4 & 4 \\
+                  8 & 3 & 2 \\
+                  \hline
+              \end{tabular}
+          \end{center}
+    \item $\sigma_{R.L>S.M\wedge R.M<S.P}(R\cross S)$
+          \begin{center}
+              \begin{tabular}{|c|c|c|c|c|}
+                  \hline
+                  R.L & R.M & S.M & S.N & S.P \\
+                  \hline
+                  4   & 3   & 1   & 6   & 4   \\
+                  4   & 3   & 3   & 4   & 7   \\
+                  6   & 5   & 3   & 4   & 7   \\
+                  8   & 7   & 6   & 1   & 8   \\
+                  \hline
+              \end{tabular}
+          \end{center}
+    \item Let us abbreviate $Student$ as $S$, $Course$ as $C$ and $Enrollment$ as $E$. In addition let $sn$ denote $Student-name$, $cn$ denote $Course-name$ and $dp$ denote $Department$.
+          \begin{enumerate}
+              \item $\Pi_{sn}(S)-\Pi_{sn}(\sigma_{cn=\text{"Database Management Systems"}}(E))$
+              \item $\Pi_{sn}(S)-\Pi_{S.sn}(\sigma_{C.dp=S.dp}(\sigma_{C.cn=E.cn}(C\cross\sigma_{S.sn=E.sn}(S\cross E))))$
+              \item $\Pi_{cn}(C)-\Pi_{cn}(E)$
+              \item $\Pi_{S.dp}(\sigma_{S.sn=E.sn}(S\cross\sigma_{C.dp=\text{"CS"}\wedge C.cn=E.cn}(C\cross E)))$
+              \item $\Pi_{S.dp}(\sigma_{S.sn=s1.sn}(S\cross\rho_{s1}(\Pi_{sn}(S)-\Pi_{e1.sn}(\sigma_{e1.sn=e2.sn\wedge e1.cn\neq c2.cn}(\rho_{e1}(E)\cross\rho_{e2}(E))))))$
+          \end{enumerate}
+    \item $\Pi_{company-name}(Company)-\Pi_{c.company-name}(\sigma_{c.valuation>d.valuation}(\rho_{c}(Company)\cross\rho_{d}(Company)))$
+\end{enumerate}
+\end{document}

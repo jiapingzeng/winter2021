@@ -1,5 +1,5 @@
-<link href="bootstrap.min.css" rel="stylesheet">
-<link href="font-awesome.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
 <style>
     #header {
         display: grid;

@@ -73,7 +73,7 @@ if ($id) {
                     $roles = $db->query("SELECT role, title, mid FROM Actor, Movie, MovieActor WHERE Actor.id=$id AND Actor.id=aid AND Movie.id=mid;");
 
                     if ($roles->num_rows) {
-                        while ($row = $rs->fetch_assoc()) {
+                        while ($row = $roles->fetch_assoc()) {
                             $role = $row['role'];
                             $title = $row['title'];
                             $mid = $row['mid'];

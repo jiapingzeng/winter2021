@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{relsize}
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\title{Math 110A Midterm}
+\date{2/5/2021}
+\author{Jiaping Zeng}
+
+\begin{document}
+\setstretch{1.35}
+
+\begin{enumerate}
+      \item Find al solutions to the indicated equations in $\mathbb{Z}/n\mathbb{Z}$, or prove that there are none. Justify your answers:
+            \begin{enumerate}
+                  \item $[8]x=[21]$ in $\mathbb{Z}/23\mathbb{Z}$.\\
+                        \textbf{Answer}: Using problem 9 from homework 2, we have $a=8$, $b=21$ and $n=23$. Then $d=(a,n)=1$, $b_1=b/d=21$ and $n_1=n/d=23$. We can take $u=3$ and $v=-1$ to have $au+nv=24-23=1=d$. Then by problem 9(b), there exists $d=1$ solution and the only solution is $[ub_1]=[63]\equiv [17]$ (mod 23). Therefore $x=[17]$.
+                  \item $x^3+x=[1]$ in $\mathbb{Z}/7\mathbb{Z}$.\\
+                        \textbf{Answer}:
+                        \begin{center}
+                              \begin{tabular}{c|c|c}
+                                    $x$   & $x^3+x$                                 & is solution? \\
+                                    \hline
+                                    $[0]$ & $[0]\cdot [0]\cdot [0]+[0]=[0]+[0]=[0]$ & no           \\
+                                    $[1]$ & $[1]\cdot [1]\cdot [1]+[1]=[1]+[1]=[2]$ & no           \\
+                                    $[2]$ & $[2]\cdot [2]\cdot [2]+[2]=[1]+[2]=[3]$ & no           \\
+                                    $[3]$ & $[3]\cdot [3]\cdot [3]+[3]=[6]+[3]=[2]$ & no           \\
+                                    $[4]$ & $[4]\cdot [4]\cdot [4]+[4]=[1]+[4]=[5]$ & no           \\
+                                    $[5]$ & $[5]\cdot [5]\cdot [5]+[5]=[6]+[5]=[4]$ & no           \\
+                                    $[6]$ & $[6]\cdot [6]\cdot [6]+[6]=[6]+[6]=[5]$ & no           \\
+                              \end{tabular}
+                        \end{center}
+                        Therefore the equation has no solution in $\mathbb{Z}/7\mathbb{Z}$.
+            \end{enumerate}
+            \newpage
+      \item The \textit{Fibonacci sequence $F_n$} is defined \textit{recursively} as follows:
+            \begin{align*}  & F_0 = 1, \quad F_1 = 1 \\ & \text{For any } n \ge 1, \quad F_{n+1} = F_n + F_{n-1},\end{align*}
+            so the first few terms are $1,1,2,3,5,8,13,21,34,55,89,144,\ldots.$\\
+            Prove that for any integer $n\geq 1$, $\gcd(F_n,F_{n-1})=1$.\\
+            \textbf{Answer}: By induction on $n$.\\
+            Base case: $n=1$, we have $F_0=1$ and $F_1=1$, so $\gcd(F_1,F_0)=1$.\\
+            Inductive step: Suppose that $\gcd(F_{n-1},F_{n-2})=1$, we will show that $\gcd(F_n,F_{n-1})=1$ by contradiciton. Assume that $\gcd(F_n,F_{n-1})=d>1$, then by Theorem 1.2 there must exist some $u,v\in\mathbb{Z}$ such that $d=F_nu+F_{n-1}v$. Since $F_n=F_{n-2}+F_{n-1}$, we have $d=(F_{n-2}+F_{n-1})u+F_{n-1}v=F_{n-2}u+F_{n-1}(u+v)$. But this implies that $d>1$ is a common factor of $F_{n-2}$ and $F_{n-1}$, which contradicts with $\gcd(F_{n-2},F_{n-1})=1$, so our assumption must be false and $\gcd(F_n,F_{n-1})=1$.\\
+            Therefore $\gcd(F_n,F_{n-1})=1$ by induction.
+            \newpage
+      \item Let $R=\{0_R,a,b,c,d\}$ be a ring with 5 elements and additive identity $0_R$. We are given that $a+b=c+d=0_R$ and $ad=b$. Which of the five elements of the ring is equal to $ac$? Justify your answer.\\
+            \textbf{Answer}: Since $a+b=c+d=0_R$, we have $b=-a$ and $d=-c$. By substitution and Theorem 3.5(2), we have $ad=b\implies a(-c)=(-a)\implies -ac=-a$. Now we can add $ac+a$ to both sides, which gives us $-ac+ac+a=-a+ac+a\implies ac=a$.
+            \newpage
+      \item Prove that each of the following sets with the specified operations is \textit{NOT} a ring. In each part, identify a specific property of rings which fails, and \textit{prove} that it fails.
+            \begin{enumerate}
+                  \item The set $R=\{[0],[2],[4],[6],[8],[10]\}\subseteq\mathbb{Z}/11\mathbb{Z}$, with addition and multiplication defined as they are in $\mathbb{Z}/11\mathbb{Z}$.\\
+                        \textbf{Answer}: $R$ is not a ring because it is not closed under addition. Take $a=[4]\in R$ and $b=[8]\in R$, we have $a+b=[4]+[8]=[1]$ which is not in $R$.
+                  \item The set $S=\{f:\mathbb{R}\rightarrow\mathbb{R}\mid f(2)=2f(1)\}$ of functions from $\mathbb{R}$ to $\mathbb{R}$ satisfying $f(2)=2f(1)$, with addition and multiplication defined pointwise.\\
+                        \textbf{Answer}: $S$ is not a ring because it is not closed under multiplication. Take $f(x)=g(x)=x$, note that both functions are in $S$ as $f(2)=g(2)=2=2f(1)=2g(1)$. However, $(fg)(x)=f(x)g(x)=x^2$ is not in $S$ as $(fg)(2)=4\neq 2=2(fg)(1)$.
+                  \item The set $T=\{x\in\mathbb{R}\mid x>0\}$ of \textit{positive} real numbers, where addition in $T$ is defined by $x\oplus y=xy$ and multiplicationin $T$ is defined by $x\odot y=x+y$.\\
+                        \textbf{Answer}: $T$ is not a ring because it doesnt not have an additive identity. Suppose we do have a $0_T\in T$, then we can take any $a\in T$ and have $a+0_T=a$. However, since $0_T\in T$, we have $0_T>0$, so $a+0_T>a$. Therefore $T$ does not have an additive identity by contradiciton.
+            \end{enumerate}
+            \newpage
+      \item Let $f:\mathbb{Z}\rightarrow\mathbb{Z}\cross\mathbb{Z}$ be any homomorphism. Prove that $f$ must equal one of the four homomorphisms: \begin{align*}f_0(n)&= (0,0),&f_1(n)&= (n,0),&f_2(n)&= (0,n),&f_3(n)&= (n,n).\end{align*}
+            \textbf{Answer}: Since $\mathbb{Z}$ is a ring, by Theorem 3.1 $\mathbb{Z}\cross\mathbb{Z}$ is also a ring. Then by definition of homomorphism we have $f(ab)=f(a)f(b)$ for all $a,b\in\mathbb{Z}$. Take $a=b=1$ and let $f(1)=(p,q)$, we have $f(ab)=f(1^2)=f(1)f(1)=(p,q)(p,q)=(p^2,q^2)$. Then since $1=1^2$, we have $f(1)=f(1^2)\implies (p,q)=(p^2,q^2)$, therefore $p=p^2$ and $q=q^2$. Since the only integers satisfying these properties are 0 and 1, any $f$ must satisfy one of the following:
+            \begin{enumerate}
+                  \item $p=0,q=0$: $f_0(1)=(0,0)$
+                  \item $p=1,q=0$: $f_1(1)=(1,0)$
+                  \item $p=0,q=1$: $f_2(1)=(0,1)$
+                  \item $p=1,q=1$: $f_3(1)=(1,1)$
+            \end{enumerate}
+            Then since $f$ is a linear function, we have $f(n)=nf(1)$ for any $n\in\mathbb{Z}$, therefore we can multiply the scalar $n$ to the above to achieve the desired result.
+            \newpage
+\end{enumerate}
+
+I assert, on my honor, that I have not received assistance of any kind from any other person, or given assistance to any other person, while working on the midterm.\\
+Signature: \includegraphics[width=2in]{signature.png}\\
+Date: 2/5/2021
+
+\end{document}

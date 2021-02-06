@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
     <title>CS 143 Project 2</title>
     <style>
         body {

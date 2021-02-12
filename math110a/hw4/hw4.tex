@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{relsize}
+\usepackage{multicol}
+
+\title{Math 110A Homework 4}
+\date{2/8/2021}
+\author{Jiaping Zeng}
+
+\begin{document}
+\setstretch{1.35}
+\maketitle
+
+\begin{enumerate}
+      \item Let $\mathbb{Q}(\sqrt 2) = \{a+b\sqrt{2}|a,b\in\mathbb{Q}\}$. Prove that the function $f:\mathbb{Q}(\sqrt 2)\to \mathbb{Q}(\sqrt 2)$ given by $f(a+b\sqrt 2) = a-b\sqrt 2$ is an isomorphism.\\
+            \textbf{Answer}: 
+      \item Which of the following functions are homomorphisms?
+            \begin{enumerate}
+                  \item $f:\mathbb{Z}\rightarrow\mathbb{Z}$ defined by $f(x)=-x$.
+                  \item $f:\mathbb{Z}/2\mathbb{Z}\rightarrow\mathbb{Z}/2\mathbb{Z}$ defined by $f(x)=-x$.
+                  \item $g:\mathbb{Q}\rightarrow\mathbb{Q}$ defined by $g(x)=\dfrac{1}{1+x^2}$.
+                  \item $h:\mathbb{R}\rightarrow M_2(\mathbb{R})$, defined by $h(a)=\begin{pmatrix}-a&0\\a&0\end{pmatrix}$.
+                  \item $f:\mathbb{Z}/12\mathbb{Z}\rightarrow\mathbb{Z}/4\mathbb{Z}$, defined by $f([x]_{12})=[x]_4$.
+            \end{enumerate}
+      \item Show that the first ring is not isomorphic to the second:
+            \begin{enumerate}
+                  \item $\mathbb{R}\cross\mathbb{R}\cross\mathbb{R}\cross\mathbb{R}$ and $M_2(\mathbb{R})$.
+                  \item $\mathbb{Q}$ and $\mathbb{R}$.\\
+                        \textbf{Answer}: 
+                  \item $(\mathbb{Z}/4\mathbb{Z})\cross(\mathbb{Z}/4\mathbb{Z})$ and $\mathbb{Z}/16\mathbb{Z}$.
+            \end{enumerate}
+      \item If $f:\mathbb{Z}\rightarrow\mathbb{Z}$ is an isomorphism, prove that $f$ is the identity map.\\
+            \textbf{Answer}: Let $f(1)=a\in\mathbb{Z}$, then by definition of ring isomorphism we have $f(n)=f(1+\cdots+1)=f(1)+\cdots+f(1)=nf(1)=na$. Similarly, we also have $f(n)=f(n\cdot 1)=f(n)f(1)=na^2$, so $na=na^2\implies a=1$ or $a=0$. Note that for $a=0$, we have $f(n)=0$ which is not bijective, therefore we must have $a=1\implies f(1)=1\implies f(n)=n$ which is the identity map.
+      \item Let $L$ be the ring considered in Problem 4 of homework 3. That is, $L$ is the set of positive real numbers with addition and multiplication on $L$ defined by $a\oplus b=ab$ and $a\otimes b=a^{\log b}$. In that problem, you showed that $L$ is a field. Prove that $L$ is actually isomorphic to the field $\mathbb{R}$ (with the usual addition and multiplication).\\
+            \textbf{Answer}: Let $f:L\rightarrow\mathbb{R}$ be defined as $f(a)=\log a$, we will prove the three conditions of ring isomorphism as follows:
+            \begin{itemize}
+                  \item [(i)] Suppose $f(a)=f(b)$, we have $f(a)=f(b)\implies \log a=\log b\implies e^{\log a}=e^{\log b}\implies a=b$. Therefore $f$ is injective.
+                  \item [(ii)] Since the image of $\log$ is $\mathbb{R}$, $f$ is surjective.
+                  \item [(iii)] By properties of $\log$ we have $f(a\oplus b)=\log(ab)=\log a+\log b=f(a)+f(b)$ and $f(a\otimes b)=\log(a^{\log b})=\log b\cdot \log b=f(a)f(b)$.
+            \end{itemize}
+      \item Let $f:R\rightarrow S$ be a homomorphism of rings and let $K=\{r\in R\mid f(r)=0_S\}$.
+            \begin{enumerate}
+                  \item Prove that $K$ is a subring of $R$.\\
+                        \textbf{Answer}: Let $p,q\in K$, then we must have $f(p)=0_S$ and $f(q)=0_S$. By definition of ring homomorphism we have $f(p-q)=f(p)-f(q)=0_S$, so $p-q\in K$. Similarly we also have $f(pq)=f(p)f(q)=0_S$, so $pq\in K$. Therefore $K$ is a subring of $R$ by Theorem 3.6.
+                  \item Prove that for any $x\in K$ and any $r\in R$ that $rx\in K$ and $xr\in K$.\\
+                        \textbf{Answer}: Since $x\in K$, we have $f(x)=0_S$, so $f(rx)=f(r)f(x)=f(r)\cdot 0_S=0_S$ and $rx\in K$. Similarly, $f(xr)=f(x)f(r)=0_S\cdot f(r)=0_S$ and $xr\in K$.
+                  \item Prove that $f$ is injective if and only if $K=\{0_R\}$.\\
+                        \textbf{Answer}: \begin{itemize}
+                              \item [$\Rightarrow$:] By contradiction. Suppose there exists an $a\in K$ with $a\neq 0_R$, then we must have $f(a)=0_S$. But since $0_R\in K$, we have $f(0_R)=0_S=f(a)\implies a=0_R$ by definition of injection. Therefore $K=\{0_R\}$.
+                              \item [$\Leftarrow$:] By contradiction. Suppose that we have $a,b\in R$ such that $a\neq b$ and $f(a)=f(b)$, then by definition of ring homomorphism we have $f(a)-f(b)=f(a-b)=0_S$, so $a-b\in K$. But since $a\neq b$, $a-b\neq 0_R$ cannot be in $K=\{0_R\}$. Therefore $f$ must be injective.
+                        \end{itemize}
+            \end{enumerate}
+      \item Let $F$ be a field and $R$ be a ring, and let $f:F\rightarrow R$ be a ring homomorphism.
+            \begin{enumerate}
+                  \item If there is a \textit{nonzero} element $c$ of $F$ such that $f(c)=0$, prove that $f$ is the zero homomorphism.\\
+                        \textbf{Answer}: Since $F$ is a field, there exists a $c^{-1}$ such that $cc^{-1}=1_F$. Then for any $x\in F$, we have $f(x)=f(xcc^{-1})=f(x)f(c)f(c^{-1})=f(x)\cdot 0_R\cdot f(c^{-1})=0_R$. Therefore $f$ is the zero homomorphism.
+                  \item Prove that $f$ is either injective or the zero homomorphism.\\
+                        \textbf{Answer}: Suppose we have $a,b\in F$ where $f(a)=f(b)$, then $f(a-b)=f(a)-f(b)=0_R$. If $a-b\neq 0_R$, $f$ is the zero homomorphism by part (a). If $a-b=0_R$, we have $f(a)=f(b)\implies a=b$ so $f$ is injective.
+            \end{enumerate}
+      \item Which of the following subsets of $R[x]$ are subrings of $R[x]$?
+            \begin{enumerate}
+                  \item All polynomials with constant term $0_R$.\\
+                        \textbf{Answer}: It is a subring since it is closed under subtraction and multiplication; both the difference and product between two polynomials with constant $0_R$ would still have constant term $0_R$.
+                  \item All polynomials of degree 2.\\
+                        \textbf{Answer}: Not a subring as it is not closed under multiplication; the product of two degree 2 polynomials would be degree 4.
+                  \item All polynomials of degree $\leq k$, where $k$ is a fixed positive integer.\\
+                        \textbf{Answer}: Not a subring as it is not closed under multiplication; the product of two degree $k$ polynomials would be degree $2k$.
+                  \item All polynomials in which the odd powers of $x$ have zero coefficients.\\
+                        \textbf{Answer}: It is a subring since it is closed under subtraction and multiplication. When we take the difference of coefficients for each power of $x$, the odd powers of the difference would still have zero coefficients. When multiplying two polynomials, since it is not possible get an nonzero odd power coefficients in the product without at least one nonzero odd power in one of the factors, the product would have zero coefficients in the odd powers.
+                  \item All polynomials in which the even powers of $x$ have zero coefficients.\\
+                        \textbf{Answer}: Not a subring as it is not closed under multiplication; e.g. $x^5\cdot x^3=x^8$.
+            \end{enumerate}
+      \item Show that $1+3x$ is a unit in $(\mathbb{Z}/9\mathbb{Z})[x]$. Hence Corollary 4.5 may be false if $R$ is not an integral domain.\\
+      \textbf{Answser}: We have $(1+3x)(1-3x)=1-9x^2=1-0x^2=1$, so $1+3x$ is a unit in $(\mathbb{Z}/9\mathbb{Z})[x]$.
+\end{enumerate}
+\end{document}

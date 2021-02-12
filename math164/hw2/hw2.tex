@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{relsize}
+\usepackage{graphicx}
+
+\title{Math 164 Homework 2}
+\date{2/9/2021}
+\author{Jiaping Zeng}
+
+\begin{document}
+\setstretch{1.35}
+\maketitle
+
+\begin{enumerate}
+    \item Let $f:\mathbb{R}^n\rightarrow\mathbb{R}$ be a smooth function. Prove that $\nabla^2f(x)=D(\nabla f(x))=\nabla(\nabla f(x))$.\\
+          \textbf{Answer}:
+    \item Find the gradient and hessian of the following functions.
+          \begin{enumerate}
+              \item
+          \end{enumerate}
+    \item Let $\sigma(\cdot):\mathbb{R}\rightarrow\mathbb{R}$ be a scalar function and apply elementwise to its input vectors.
+    \item In each of the following problems justify your answer using optimality conditions.
+          \begin{enumerate}
+              \item Compute the gradient $\nabla f(x)$ and Hessian $\nabla^2 f(x)$ of the Rosenbrock function \[f(x)=100(x_2-x_1^2)^2+(1-x_1)^2\] Show that $x^\star=[1,1]^T$ is the only local minimizer of this function, and that the Hessian matrix at that point is positive definite.\\
+                    \textbf{Answer}: \[
+                        \nabla f(x)=\begin{bmatrix}
+                            \dfrac{\delta f}{\delta x_1} \\\dfrac{\delta f}{\delta x_2}
+                        \end{bmatrix}=\begin{bmatrix}
+                            400x_1^3-400x_1x_2+2x_1-2 \\
+                            200x_2-200x_1^2
+                        \end{bmatrix}
+                    \]
+          \end{enumerate}
+\end{enumerate}
+\end{document}

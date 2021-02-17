@@ -1,0 +1,1 @@
+SELECT country FROM Affiliation, Place WHERE pid=id AND name="CERN" LIMIT 1;

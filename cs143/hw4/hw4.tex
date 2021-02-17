@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{relsize}
+\usepackage{graphicx}
+
+\title{CS 143 Homework 4}
+\date{2/11/2021}
+\author{Jiaping Zeng}
+
+\begin{document}
+\setstretch{1.35}
+\maketitle
+
+\begin{enumerate}
+    \item It is lossless since $A\rightarrow BC\rightarrow D\rightarrow E$, therefore $A\rightarrow DE$ so $A$ is a key in the second decomposed table.
+    \item $A\rightarrow B,C\rightarrow A$.
+    \item If $sid\rightarrow (dept,cnum)$ and $(dept,cnum)\rightarrow sid$, we have a one-to-one relationship. If $sid\rightarrow (dept,cnum)$ and $(dept,cnum)\not\rightarrow sid$, we have a many-to-one relationship.
+    \item \begin{enumerate}
+              \item Yes because $A\rightarrow B\rightarrow D$, then $A\rightarrow CD\rightarrow E$ so $A\rightarrow BCDE$.
+              \item Yes because $B\rightarrow D$ then $CD\rightarrow E$ and $E\rightarrow A$, so $BC\rightarrow ADE$.
+          \end{enumerate}
+    \item No because $F$ cannot be determined so we would need $(A,F)$ as key, so all the funcitonal dependencies fail the BCNF conditions. It can be normalized into a set of relations as follows:\\$R_0(A,B,C): A\rightarrow BC$\\$R_1(B,D):B\rightarrow D$\\$R_2(C,E):C\rightarrow E$\\$R_3(A,F):$ (none)
+    \item \begin{enumerate}
+        \item CHECK (weight$>$0 AND weight$<=$ 5)
+        \item CREATE TRIGGER t\\AFTER INSERT ON Laptop\\REFERENCING NEW ROW AS n\\FOR EACH ROW\\WHEN (weight$>$0 AND weight$<=$ 5)\\BEGIN\\UPDATE Laptop WHERE model=n.model SET weight=NULL\\END;
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item CREATE TABLE Employee(eid INT, name VARCHAR(20), salary INT, PRIMARY KEY(eid));\\CREATE TABLE LeavingTime(eid INT, date DATE, time TIME, PRIMARY KEY(eid, date), FOREIGN KEY(eid) REFERENCES Employee(eid));
+        \item INSERT INTO LeavingTime(143, 04-01-2015, 16:00:00);
+        \item We will get an error since the same primary key (eid, date) of the second swipe already exists in the database.
+        \item DELETE FROM LeavingTime\\WHERE eid, date, time NOT IN (SELECT eid, date, MAX(time) FROM LeavingTime GROUP BY date, time);
+    \end{enumerate}
+    \item $(1,27),(1,100),(1,100)$
+\end{enumerate}
+\end{document}

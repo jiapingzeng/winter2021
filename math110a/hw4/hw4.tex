@@ -18,21 +18,33 @@
 
 \begin{enumerate}
       \item Let $\mathbb{Q}(\sqrt 2) = \{a+b\sqrt{2}|a,b\in\mathbb{Q}\}$. Prove that the function $f:\mathbb{Q}(\sqrt 2)\to \mathbb{Q}(\sqrt 2)$ given by $f(a+b\sqrt 2) = a-b\sqrt 2$ is an isomorphism.\\
-            \textbf{Answer}: 
+            \textbf{Answer}: we will prove the three conditions of ring isomorphism as follows:
+            \begin{itemize}
+                  \item [(i)] Suppose $f(a+b\sqrt{2})=f(a'+b'\sqrt{2})$, we have $f(a+b\sqrt{2})=f(a'+b'\sqrt{2})\implies a-b\sqrt{2}=a'-b'\sqrt{2}$. Since $\sqrt{2}$ is not rational but $a,b,a',b'$ are, we must have $a=a'$ and $b=b'$, therefore $f$ is injective.
+                  \item [(ii)] For every $a+b\sqrt{2}\in\mathbb{Q}(\sqrt{2})$, we have $a+b\sqrt{2}=f(a-b\sqrt{2})$. Therefore $f$ is surjective.
+                  \item [(iii)] We have $f((a+b\sqrt{2})+(a'+b'\sqrt{2}))=f((a+a')+(b+b')\sqrt{2})=(a+a')-(b+b')\sqrt{2}=(a+b\sqrt{2})+(a'+b'\sqrt{2})=f(a+b\sqrt{2})+f(a'+b'\sqrt{2})$. Similarly, we also have $f((a+b\sqrt{2})(a'+b'\sqrt{2}))=f((aa'+2bb')+(ab'+a'b)\sqrt{2})=(aa'+2bb')-(ab'+a'b)\sqrt{2}=(a-b\sqrt{2})(a'-b'\sqrt{2})=f(a+b\sqrt{2})f(a'+b'\sqrt{2})$.
+            \end{itemize}
       \item Which of the following functions are homomorphisms?
             \begin{enumerate}
-                  \item $f:\mathbb{Z}\rightarrow\mathbb{Z}$ defined by $f(x)=-x$.
-                  \item $f:\mathbb{Z}/2\mathbb{Z}\rightarrow\mathbb{Z}/2\mathbb{Z}$ defined by $f(x)=-x$.
-                  \item $g:\mathbb{Q}\rightarrow\mathbb{Q}$ defined by $g(x)=\dfrac{1}{1+x^2}$.
-                  \item $h:\mathbb{R}\rightarrow M_2(\mathbb{R})$, defined by $h(a)=\begin{pmatrix}-a&0\\a&0\end{pmatrix}$.
-                  \item $f:\mathbb{Z}/12\mathbb{Z}\rightarrow\mathbb{Z}/4\mathbb{Z}$, defined by $f([x]_{12})=[x]_4$.
+                  \item $f:\mathbb{Z}\rightarrow\mathbb{Z}$ defined by $f(x)=-x$.\\
+                        \textbf{Answer}: No since $f(ab)=-ab\neq ab=(-a)(-b)=f(a)f(b)$.
+                  \item $f:\mathbb{Z}/2\mathbb{Z}\rightarrow\mathbb{Z}/2\mathbb{Z}$ defined by $f(x)=-x$.\\
+                        \textbf{Answer}: Yes; in $\mathbb{Z}/2\mathbb{Z}$ we have $-a\equiv a$ (mod 2) for every $a$, so $f(a+b)=-(a+b)=-a-b=f(a)+f(b)$ and $f(ab)=-ab=ab=(-a)(-b)=f(a)f(b)$ and $f$ is a homomorphism.
+                  \item $g:\mathbb{Q}\rightarrow\mathbb{Q}$ defined by $g(x)=\dfrac{1}{1+x^2}$.\\
+                        \textbf{Answer}: No, $g(ab)=\dfrac{1}{1+a^2b^2}\neq\dfrac{1}{(1+a^2)(1+b^2)}=g(a)g(b)$.
+                  \item $h:\mathbb{R}\rightarrow M_2(\mathbb{R})$, defined by $h(a)=\begin{pmatrix}-a&0\\a&0\end{pmatrix}$.\\
+                        \textbf{Answer}: No, $h(ab)=\begin{pmatrix}-ab&0\\ab&0\end{pmatrix}\neq\begin{pmatrix}ab&0\\-ab&0\end{pmatrix}=\begin{pmatrix}-a&0\\a&0\end{pmatrix}\begin{pmatrix}-b&0\\b&0\end{pmatrix}=h(a)h(b)$.
+                  \item $f:\mathbb{Z}/12\mathbb{Z}\rightarrow\mathbb{Z}/4\mathbb{Z}$, defined by $f([x]_{12})=[x]_4$.\\
+                        \textbf{Answer}: We have $f([a+b]_{12})=[a+b]_4=[a]_4+[b]_4=f([a]_{12})+f([b]_{12})$ and $f([ab]_{12})=[ab]_4=[a]_4[b]_4=f([a]_{12})f([b]_{12})$, so $f$ is a homomorphism.
             \end{enumerate}
       \item Show that the first ring is not isomorphic to the second:
             \begin{enumerate}
-                  \item $\mathbb{R}\cross\mathbb{R}\cross\mathbb{R}\cross\mathbb{R}$ and $M_2(\mathbb{R})$.
+                  \item $\mathbb{R}\cross\mathbb{R}\cross\mathbb{R}\cross\mathbb{R}$ and $M_2(\mathbb{R})$.\\
+                        \textbf{Answer}: By contradiction; suppose we do have an isomorphism and let $a,b\in\mathbb{R}\cross\mathbb{R}\cross\mathbb{R}\cross\mathbb{R}$ and $f(a),f(b)\in M_2(\mathbb{R})$. By condition (iii) we have $f(ab)=f(a)f(b)$, note that $f(ab)=f(ba)$ but $f(a)f(b)\neq f(b)f(a)$ (e.g. matrices from 2(d)), so $f$ is not injective. Therefore $\mathbb{R}\cross\mathbb{R}\cross\mathbb{R}\cross\mathbb{R}$ is not isomorphic to $M_2(\mathbb{R})$.
                   \item $\mathbb{Q}$ and $\mathbb{R}$.\\
-                        \textbf{Answer}: 
-                  \item $(\mathbb{Z}/4\mathbb{Z})\cross(\mathbb{Z}/4\mathbb{Z})$ and $\mathbb{Z}/16\mathbb{Z}$.
+                        \textbf{Answer}: Since $\mathbb{Q}\in\mathbb{R}$ but $\mathbb{R}\notin\mathbb{Q}$, any $f:\mathbb{Q}\rightarrow\mathbb{R}$ would not be one-to-one, therefore $\mathbb{Q}$ is not isomorphic to $\mathbb{R}$.
+                  \item $(\mathbb{Z}/4\mathbb{Z})\cross(\mathbb{Z}/4\mathbb{Z})$ and $\mathbb{Z}/16\mathbb{Z}$.\\
+                        \textbf{Answer}: Suppose we have an isomorphism, then by Theorem 3.10 we have $f(0,0)=0$ and $f(1,1)=1$. Then $f((1,1)+(1,1)+(1,1)+(1,1))=f(4,4)=f(0,0)=4$, which contradicts with $f(0,0)=0$. Therefore $(\mathbb{Z}/4\mathbb{Z})\cross(\mathbb{Z}/4\mathbb{Z})$ is not isomorphic to $\mathbb{Z}/16\mathbb{Z}$.
             \end{enumerate}
       \item If $f:\mathbb{Z}\rightarrow\mathbb{Z}$ is an isomorphism, prove that $f$ is the identity map.\\
             \textbf{Answer}: Let $f(1)=a\in\mathbb{Z}$, then by definition of ring isomorphism we have $f(n)=f(1+\cdots+1)=f(1)+\cdots+f(1)=nf(1)=na$. Similarly, we also have $f(n)=f(n\cdot 1)=f(n)f(1)=na^2$, so $na=na^2\implies a=1$ or $a=0$. Note that for $a=0$, we have $f(n)=0$ which is not bijective, therefore we must have $a=1\implies f(1)=1\implies f(n)=n$ which is the identity map.
@@ -76,6 +88,6 @@
                         \textbf{Answer}: Not a subring as it is not closed under multiplication; e.g. $x^5\cdot x^3=x^8$.
             \end{enumerate}
       \item Show that $1+3x$ is a unit in $(\mathbb{Z}/9\mathbb{Z})[x]$. Hence Corollary 4.5 may be false if $R$ is not an integral domain.\\
-      \textbf{Answser}: We have $(1+3x)(1-3x)=1-9x^2=1-0x^2=1$, so $1+3x$ is a unit in $(\mathbb{Z}/9\mathbb{Z})[x]$.
+            \textbf{Answser}: We have $(1+3x)(1-3x)=1-9x^2=1-0x^2=1$, so $1+3x$ is a unit in $(\mathbb{Z}/9\mathbb{Z})[x]$.
 \end{enumerate}
 \end{document}

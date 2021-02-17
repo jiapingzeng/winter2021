@@ -1,0 +1,1 @@
+SELECT COUNT(DISTINCT pid) FROM Affiliation WHERE name="University of California";

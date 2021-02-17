@@ -1,0 +1,1 @@
+SELECT COUNT(DISTINCT awardYear) FROM NobelPrize, Laureate WHERE lid=id AND type="organization";

@@ -5,12 +5,12 @@ const fs = require('fs');
 let file = fs.readFileSync("/home/cs143/data/nobel-laureates.json");
 let data = JSON.parse(file)
 
-let laureateStream = fs.createWriteStream("/home/cs143/shared/p3/data/laureate.del");
-let personStream = fs.createWriteStream("/home/cs143/shared/p3/data/person.del");
-let orgStream = fs.createWriteStream("/home/cs143/shared/p3/data/organization.del");
-let placeStream = fs.createWriteStream("/home/cs143/shared/p3/data/place.del");
-let affilStream = fs.createWriteStream("/home/cs143/shared/p3/data/affiliation.del");
-let prizeStream = fs.createWriteStream("/home/cs143/shared/p3/data/nobel-prize.del");
+let laureateStream = fs.createWriteStream("laureate.del");
+let personStream = fs.createWriteStream("person.del");
+let orgStream = fs.createWriteStream("organization.del");
+let placeStream = fs.createWriteStream("place.del");
+let affilStream = fs.createWriteStream("affiliation.del");
+let prizeStream = fs.createWriteStream("nobel-prize.del");
 
 let places = new Map();
 let affils = new Map();

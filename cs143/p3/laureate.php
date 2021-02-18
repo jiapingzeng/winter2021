@@ -8,35 +8,99 @@ if ($db->connect_errno > 0) {
 
 header('Content-Type: application/json');
 
-
-
-$id = 6;
 $type = $db->query("SELECT type FROM Laureate WHERE id=$id;")->fetch_assoc()['type'];
-print $type == "person";
+$person = $db->query("SELECT * FROM Person WHERE Person.lid=$id;")->fetch_assoc();
+$org = $db->query("SELECT * FROM Organization, Place WHERE lid=$id;")->fetch_assoc();
 
-
-if ($type == "person") {
-    $row = $db->query("SELECT * FROM PERSON WHERE lid=$id;")->fetch_assoc();
-    print $row;
-} else if ($type == "organization") {
-    $row = $db->query("SELECT * FROM Organization WHERE lid=$id;")->fetch_assoc();
-    print $row;
+if ($person) {
+    $birthplace = $db->query("SELECT * FROM Place WHERE id={$person['pid']};")->fetch_assoc();
+    $birth = (object) [
+        "date" => $person['birth'],
+        "place" => (object) [
+            "city" => (object) [
+                "en" => $birthplace['city']
+            ],
+            "country" => (object) [
+                "en" => $birthplace['country']
+            ]
+        ]
+    ];
+} elseif ($org) {
+    $foundedplace = $db->query("SELECT * FROM Place WHERE id={$org['pid']};")->fetch_assoc();
+    $founded = (object) [
+        "date" => $org['founded'],
+        "place" => (object) [
+            "city" => (object) [
+                "en" => $foundedplace['city']
+            ],
+            "country" => (object) [
+                "en" => $foundedplace['country']
+            ]
+        ]
+    ];
 } else {
-    print "Could not find";
+    echo json_encode((object) ["error" => "Invalid ID"]);
+    return;
 }
 
-$output = (object) [
-    "id" => strval($id),
-    "type" => $type,
-    "givenName" => (object) [
-        "en" => "A. Michael"
-    ],
-    "familyName" => (object) [
-        "en" => "Spencer"
-    ],
-    "affliations" => array(
-        "UCLA",
-        "White House"
-    )
-];
+$nobelPrizes = [];
+$prizeq = $db->query("SELECT * FROM NobelPrize WHERE lid=$id;");
+while ($prow = $prizeq->fetch_assoc()) {
+
+    $affiliations = [];
+    $affilq = $db->query("SELECT * FROM Affiliation WHERE lid=$id;");
+    while ($arow = $affilq->fetch_assoc()) {
+
+        $affilplace = $db->query("SELECT * FROM Place WHERE id={$arow['pid']};")->fetch_assoc();
+        $affiliations[] = (object) [
+            "name" => (object) [
+                "en" => $arow['name']
+            ],
+            "city" => (object) [
+                "en" => $affilplace['city']
+            ],
+            "country" => (object) [
+                "en" => $affilplace['country']
+            ]
+        ];
+    }
+    $nobelPrizes[] = (object) [
+        "awardYear" => $prow['awardYear'],
+        "category" => (object) [
+            "en" => $prow['category']
+        ],
+        "sortOrder" => $prow['sortOrder'],
+        "portion" => $prow['portion'],
+        "dateAwarded" => $prow['dateAwarded'],
+        "prizeStatus" => $prow['prizeStatus'],
+        "motivation" => (object) [
+            "en" => $prow['motivation']
+        ],
+        "prizeAmount" => $prow['prizeAmount'],
+        "affiliations" => $affiliations
+    ];
+}
+
+if ($person) {
+    $output = (object) [
+        "id" => $id,
+        "givenName" => (object) [
+            "en" => $person['givenName']
+        ],
+        "familyName" => (object) [
+            "en" => $person['familyName']
+        ],
+        "gender" => $person['gender'],
+        "birth" => $birth,
+        "nobelPrizes" => $nobelPrizes
+    ];
+} elseif ($org) {
+    $output = (object) [
+        "id" => $id,
+        "orgName" => $org['orgName'],
+        "founded" => $founded,
+        "nobelPrizes" => $nobelPrizes
+    ];
+}
+
 echo json_encode($output);

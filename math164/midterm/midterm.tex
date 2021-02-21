@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{relsize}
+\usepackage{graphicx}
+
+\title{Math 164 Midterm}
+\date{2/19/2021}
+\author{Jiaping Zeng}
+
+\begin{document}
+\setstretch{1.35}
+
+\begin{enumerate}
+    \item Prove that $A^T$ is the adjoint operator of $A\in\mathbb{R}^{m\cross n}$. Hint: Show $\langle Ax,y\rangle=\langle x,A^Ty\rangle$ for all $x\in\mathbb{R}^n$ and $y\in\mathbb{R}^m$.\\
+          \textbf{Answer}: By definition of adjoint, we have $\langle Ax,y\rangle=\langle x,A^*y\rangle\implies y^TAx=y^T(A^*)^Tx$; to satisfy this, we must have $A=(A^*)^T$, therefore $A^*=A^T$ and $A^T$ is the adjoint operator of $A\in\mathbb{R}^{m\cross n}$.
+          \newpage
+    \item \begin{enumerate}
+              \item Find the gradient and hessian of the function $f(x)=\frac{1}{2}\norm{Ax-b}_2^2$ where $A\in\mathbb{R}^{m\cross n}$, $x\in\mathbb{R}^n$ and $b\in\mathbb{R}^n$.\\
+                    \textbf{Answer}: We have $df(x)=d(\frac{1}{2}\norm{Ax-b}_2^2)=\frac{1}{2}(Ax-b)^Td(Ax-b)+\frac{1}{2}[d(Ax-b)]^T(Ax-b)=\frac{1}{2}(Ax-b)^TAdx+\frac{1}{2}[Adx]^T(Ax-b)=\frac{1}{2}(Ax-b)^TAdx+\frac{1}{2}(Ax-b)^TAdx=(Ax-b)^TAdx$.\\Therefore $\nabla f(x)=[(Ax-b)^TA]^T=A^T(Ax-b)$ and $\nabla^2 f(x)=D(\nabla f(x))=D(A^TAx-A^Tb)=D(A^TAx)=A^TA$.
+              \item If $\rank(A)=n$ in the above problem, find critical point of $f(x)$.\\
+                    \textbf{Answer}: We have $\nabla f(x)=A^T(Ax-b)=0\implies A^TAx-A^Tb=0\implies A^TAx=A^Tb$. Since $\rank(A)=n$, $A^TA$ is invertible, i.e. $(A^TA)^{-1}$ exists. Then $(A^TA)^{-1}A^TAx=(A^TA)^{-1}A^Tb\implies x=(A^TA)^{-1}A^Tb$.
+          \end{enumerate}
+          \newpage
+    \item Show that for any matrix $A\in\mathbb{R}^{m\cross n}$, the set $\{x\in\mathbb{R}^n:Ax=0\}$ is convex.\\
+          \textbf{Answer}: Take $x,y\in\Omega$ and $\alpha\in[0,1]$, we have $Ax=0$ and $Ay=0$ for any matrix $A\in\mathbb{R}^{m\cross n}$. Then $\alpha Ax=0,(1-\alpha)Ay=0\implies\alpha Ax+(1-\alpha)Ay=0\implies A(\alpha x+(1-\alpha)y)=0$, therefore $\alpha x+(1-\alpha)y\in\Omega$ and $\Omega$ is a convex set.
+          \newpage
+    \item Find all the critical points of $f(x_1,x_2)=(x_1^2-4)^2+x_2^2$. Which has positive definite hessian matrix?\\
+          \textbf{Answer}: We have \[
+              \nabla f(x)=\begin{bmatrix}
+                  \dfrac{\delta f}{\delta x_1} \\\dfrac{\delta f}{\delta x_2}
+              \end{bmatrix}=\begin{bmatrix}
+                  4x_1^3-16x_1 \\2x_2
+              \end{bmatrix}
+          \]\[
+              \nabla^2 f(x)=\begin{bmatrix}
+                  \dfrac{\delta^2 f}{\delta x_1^2} & \dfrac{\delta^2 f}{\delta x_1\delta x_2} \\\dfrac{\delta^2 f}{\delta x_2\delta x_1}&\dfrac{\delta^2 f}{\delta x_2^2}
+              \end{bmatrix}=\begin{bmatrix}
+                  12x_1^2-16 & 0 \\
+                  0          & 2
+              \end{bmatrix}.
+          \] Solving $\nabla f(x)=0$ gives us $4x_1^3-16x_1=0\implies x_1=0,\pm 2$ and $2x_2=0\implies x_2=0$, so the critical points are $[-2,0]^T$, $[0,0]^T$ and $[2,0]^T$. The eigenvalues of $\nabla^2 f([\pm 2, 0]^T)$ are $(32-\lambda)(2-\lambda)=0\implies\lambda=2,32$. Similarly, the eigenvalues of $\nabla^2 f([0, 0]^T)$ are $(-16-\lambda)(2-\lambda)\implies\lambda=-16,2$. Therefore the critical points $[-2,0]^T$ and $[2,0]^T$ have positive definite hessian matrix.
+          \newpage
+    \item Given $x_1,\cdots,x_n\in\mathbb{R}^d$, find the global minimizer of \[\min_{x\in\mathbb{R}^d} f(x):=\mathlarger{\sum_{k=1}^n}\norm{x-x_k}_2^2.\] Hint: Show $f(x)$ is convex function. So any critical is a global minimizer.\\
+    \textbf{Answer}: We will first show that $f(x)$ is convex: take $x,y\in\mathbb{R}^d$ and $\alpha\in[0,1]$, then $\alpha x+(1-\alpha)y$ is a linear combination of $x,y$ and is therefore also in $\mathbb{R}^d$, so $\text{dom}(f)$ is convex. In addition, we have $\nabla f(x)=\nabla\mathlarger{\sum_{k=1}^n}\norm{x-x_k}_2^2=\nabla\mathlarger{\sum_{k=1}^n}(x-x_k)^2=2\mathlarger{\sum_{k=1}^n}(x-x_k)$ by chain rule. We also have $\nabla^2 f(x)=D(\nabla f(x))=2n\geq 0$, so the Hessian is positive semidefinite and therefore $f(x)$ is a convex funtion.\\ Then we can set $\nabla f(x^*)=0$ to find our critical point $x^*$, which will be a global minimizer since $f(x)$ is a convex function. We have $\nabla f(x^*)=0\implies 2\mathlarger{\sum_{k=1}^n}(x-x_k)=0\implies 2nx^*=2\mathlarger{\sum_{k=1}^n}x_k\implies x^*=\dfrac{1}{n}\mathlarger{\sum_{k=1}^n}x_k$, therefore $\dfrac{1}{n}\mathlarger{\sum_{k=1}^n}x_k$ is the global minimizer.
+\end{enumerate}
+\end{document}

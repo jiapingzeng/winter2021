@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{relsize}
+\usepackage{multicol}
+
+\title{Math 110A Homework 4}
+\date{2/15/2021}
+\author{Jiaping Zeng}
+
+\begin{document}
+\setstretch{1.35}
+\maketitle
+
+\begin{enumerate}
+      \item For each pair of polynomials $f(x)$ and $g(x)$ below, use the Euclidean algorithm to compute the $\gcd(f(x),g(x))$, and to find polynomials $u(x)$ and $v(x)$ with $(f(x),g(x))=f(x)u(x)+g(x)v(x)$:
+            \begin{enumerate}[start=2]
+                  \item $f(x)=x^5+x^4+2x^3-x^2-x-2$ and $g(x)=x^4+2x^3+5x^2+4x+4$ in $\mathbb{Q}[x]$.\\
+                  \textbf{Answer}: As follows:\\
+                  $x^5+x^4+2x^3-x^2-x-2=(x^4+2x^3+5x^2+4x+4)(x-1)+(-x^3-x+2)$\\
+                  $x^4+2x^3+5x^2+4x+4=(-x^3-x+2)(-x-2)+(4x^2+4x+8)$\\
+                  $-x^3-x+2=(4x^2+4x+8)(-\frac{1}{4}x+\frac{1}{4})+0$\\
+                  Therefore $\gcd(f(x),g(x))=x^2+x+2$.
+                  \item $f(x)=4x^4+2x^3+6x^2+4x+5$ and $g(x)=3x^3+5x^2+6x$ in $(\mathbb{Z}/7\mathbb{Z})[x]$.\\
+                  \textbf{Answer}: As follows:\\
+                  $4x^4+2x^3+6x^2+4x+5=(3x^3+5x^2+6x)$
+                  \item $f(x)=x^3-ix^2+4x-4i$ and $g(x)=x^2+1$ in $\mathbb{C}[x]$.\\
+                  \textbf{Answer}: As follows:\\
+            \end{enumerate}
+      \item Express $x^4-4$ as a product of irreducibles in $\mathbb{Q}[x]$, $\mathbb{R}[x]$ and $\mathbb{C}[x]$.
+      \item Use unique factorization to find the $\gcd$ in $\mathbb{C}[x]$ of $(x-3)^3(x-4^4)(x-i)^2$ and $(x-1)(x-3)(x-4)^3$.
+      \item
+            \begin{enumerate}
+                  \item Show that $x^2+2$ is irreducible in $(\mathbb{Z}/5\mathbb{Z})[x]$.
+                  \item Factor $x^4-4$ as a product of irreducibles in $(\mathbb{Z}/5\mathbb{Z})[x]$.
+            \end{enumerate}
+      \item Use the factor theorem to show that $x^7-x$ factors in $(\mathbb{Z}/7\mathbb{Z})[x]$ as $x(x-1)(x-2)(x-3)(x-4)(x-5)(x-6)$, \textit{without} doing any polynomial multiplication.
+\end{enumerate}
+\end{document}

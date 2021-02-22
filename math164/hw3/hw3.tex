@@ -24,28 +24,70 @@
                   \item Halfspace: $\{x:a^Tx\leq b\}$ with $a\neq 0\in\mathbb{R}^n$ and $b\in\mathbb{R}$.\\
                         \textbf{Answer}: Take $x,y\in\Omega\implies a^Tx\leq b,b^Tx\leq b$, for $\alpha\in[0,1]$, we have $\alpha a^Tx\leq\alpha b,(1-\alpha)a^Ty\leq (1-\alpha)b\implies\alpha a^Tx+(1-\alpha)a^Ty\leq\alpha b+(1-\alpha)b\implies a^T(\alpha x+(1-\alpha)y)\leq b$, so $\alpha x+(1-\alpha)y\in\Omega$ and therefore $\Omega$ is a convex set.
                   \item Norm Ball: $\{x:\norm{x-x_c}\leq r\}$ with $>0$ and $x_c\in\mathbb{R}^n$.\\
-                        \textbf{Answer}: Take $x,y\in\Omega\implies\norm{x-x_c}\leq r,\norm{y-y_c}\leq r$, for $\alpha\in[0,1]$, we have $((1-\alpha)\norm{x-x_c}+\alpha\norm{y-y_c})$
+                        \textbf{Answer}: Take $x,y\in\Omega\implies\norm{x-x_c}\leq r,\norm{y-x_c}\leq r$, for $\alpha\in[0,1]$, we have $r\geq\alpha\norm{x-x_c}+(1-\alpha)\norm{y-x_c}\geq\norm{\alpha(x-x_c)+(1-\alpha)(y-x_c)}=\norm{\alpha x+(1-\alpha)y-x_c}$, so $\alpha x+(1-\alpha)y\in\Omega$ and therefore $\Omega$ is a convex set.
                   \item Polyhedron: $\{x:Ax\leq b,Cx=d\}$ with $A^{m\cross n},C\in\mathbb{R}^{p\cross n}$ and $b\in\mathbb{R}^m,d\in\mathbb{R}^p$.\\
-                        \textbf{Answer}:
+                        \textbf{Answer}: Take $x,y\in\Omega$ and $\alpha\in[0,1]$, we have $Ax\leq b,Cx=d$ and $Ay\leq b,Cy=d$. So $\alpha Ax+(1-\alpha)Ay\leq\alpha b+(1+\alpha)b\implies\alpha Ax+(1-\alpha)Ay\leq b$ and $\alpha Cx+(1-\alpha)y=\alpha d+(1-\alpha)d\implies\alpha Cx+(1-\alpha)y=d$. Therefore $\alpha x+(1-\alpha)y\in\Omega$ and $\Omega$ is a convex set.
                   \item Nonnegative Orthant: $\mathbb{R}_+^n=\{x:x\geq 0\}$.\\
-                        \textbf{Answer}:
+                        \textbf{Answer}: Take $x,y\in\Omega$ and $\alpha\in[0,1]$, we have $x\geq 0$ and $y\geq 0$. Therefore $\alpha x+(1-\alpha)y\geq 0$ since $\alpha\geq 0$ and $(1-\alpha)\geq 0$, so $\alpha x+(1-\alpha)y\in\Omega$ and $\Omega$ is a convex set.
                   \item Positive semidefinite cone: $S_+^n=\{X\in\mathbb{R}^{n\cross n}:X=X^T,X\succeq 0\}$\\
-                        \textbf{Answer}:
+                        \textbf{Answer}: Take $X,Y\in\Omega$ and $\alpha\in[0,1]$, we have $X=X^T,Y=Y^T,X\succeq 0,Y\succeq 0$. Then $\alpha X+(1-\alpha)Y=\alpha X^T+(1-\alpha)Y^T=(\alpha X+(1-\alpha)Y)^T$ and $\alpha X+(1-\alpha)Y\succeq 0$ (since $\alpha\geq 0$ and $(1-\alpha)\geq 0$). Therefore $\alpha X+(1-\alpha)Y\in\Omega$ and $\Omega$ is a convex set.
             \end{enumerate}
       \item For each of the following functions, determine whether it is convex or concave or neither or both. Please explain the rationale for your answer.
             \begin{enumerate}
                   \item $f(x_1,x_2)=x_1^2+x_2^4$.\\
-                        \textbf{Answer}:
+                        \textbf{Answer}: We have \[
+                              \nabla^2 f(x)=\begin{bmatrix}
+                                    \dfrac{\delta^2 f}{\delta x_1^2} & \dfrac{\delta^2 f}{\delta x_1\delta x_2} \\\dfrac{\delta^2 f}{\delta x_2\delta x_1}&\dfrac{\delta^2 f}{\delta x_2^2}
+                              \end{bmatrix}=\begin{bmatrix}
+                                    2 & 0       \\
+                                    0 & 12x_2^2
+                              \end{bmatrix}.
+                        \] Since $2\geq 0$ and $12x_2^2\geq 0$, $f$ is convex since the eigenvalues are always positve.
                   \item $f(x_1,x_2)=e^{ax_1}+e^{bx_2}$ with $a,b\in\mathbb{R}$.\\
-                        \textbf{Answer}:
+                        \textbf{Answer}: We have \[
+                              \nabla^2 f(x)=\begin{bmatrix}
+                                    \dfrac{\delta^2 f}{\delta x_1^2} & \dfrac{\delta^2 f}{\delta x_1\delta x_2} \\\dfrac{\delta^2 f}{\delta x_2\delta x_1}&\dfrac{\delta^2 f}{\delta x_2^2}
+                              \end{bmatrix}=\begin{bmatrix}
+                                    a^2e^{ax} & 0         \\
+                                    0         & b^2e^{bx}
+                              \end{bmatrix}.
+                        \] Since $a^2e^{ax}\geq 0$ and $b^2e^{bx}\geq 0$, $f$ is convex since the eigenvalues are always positve.
                   \item $f(x_1,x_2)=x_1\log(x_1)+x_2\log(x_2)$ on $\mathbb{R}_{++}^2$.\\
-                        \textbf{Answer}:
+                        \textbf{Answer}: We have \[
+                              \nabla^2 f(x)=\begin{bmatrix}
+                                    \dfrac{\delta^2 f}{\delta x_1^2} & \dfrac{\delta^2 f}{\delta x_1\delta x_2} \\\dfrac{\delta^2 f}{\delta x_2\delta x_1}&\dfrac{\delta^2 f}{\delta x_2^2}
+                              \end{bmatrix}=\begin{bmatrix}
+                                    \frac{1}{x_1} & 0             \\
+                                    0             & \frac{1}{x_2}
+                              \end{bmatrix}.
+                        \] Since $\dfrac{1}{x_1}\geq 0$ and $\dfrac{1}{x_2}\geq 0$ on $\mathbb{R}_{++}^2$, $f$ is convex since the eigenvalues are always positve.
                   \item $f(x_1,x_2)=x_1x_2$ on $\mathbb{R}_{++}^2$.\\
-                        \textbf{Answer}:
+                        \textbf{Answer}: We have \[
+                              \nabla^2 f(x)=\begin{bmatrix}
+                                    \dfrac{\delta^2 f}{\delta x_1^2} & \dfrac{\delta^2 f}{\delta x_1\delta x_2} \\\dfrac{\delta^2 f}{\delta x_2\delta x_1}&\dfrac{\delta^2 f}{\delta x_2^2}
+                              \end{bmatrix}=\begin{bmatrix}
+                                    0 & 1 \\
+                                    1 & 0
+                              \end{bmatrix}.
+                        \] Since $\tr(\nabla^2 f(x))=0$ and $\det(\nabla^2 f(x))=-1$, $f$ is neither convex nor concave.
                   \item $f(x_1,x_2)=1/(x_1x_2)$ on $\mathbb{R}_{++}^2$.\\
-                        \textbf{Answer}:
+                        \textbf{Answer}: We have \[
+                              \nabla^2 f(x)=\begin{bmatrix}
+                                    \dfrac{\delta^2 f}{\delta x_1^2} & \dfrac{\delta^2 f}{\delta x_1\delta x_2} \\\dfrac{\delta^2 f}{\delta x_2\delta x_1}&\dfrac{\delta^2 f}{\delta x_2^2}
+                              \end{bmatrix}=\begin{bmatrix}
+                                    \dfrac{2}{x_1^3x_2}   & \dfrac{1}{x_1^2x_2^2} \\
+                                    \dfrac{1}{x_1^2x_2^2} & \dfrac{2}{x_1x_2^3}
+                              \end{bmatrix}.
+                        \] $\tr(\nabla^2 f(x))=\dfrac{2}{x_1^3x_2}+\dfrac{2}{x_1x_2^3}\geq 0$ and $\det(\nabla^2 f(x))=\dfrac{2}{x_1^3x_2}\cdot\dfrac{2}{x_1x_2^3}-\dfrac{1}{x_1^2x_2^2}\cdot\dfrac{1}{x_1^2x_2^2}=\dfrac{4}{x_1^4x_2^4}-\dfrac{1}{x_1^4x_2^4}=\dfrac{3}{x_1^4x_2^4}\geq 0$ on $\mathbb{R}_{++}^2$, therefore $\nabla^2 f(x)$ is positive semidefinite and $f$ is convex.
                   \item $f(x_1,x_2)=x_1^2/x_2$ on $\mathbb{R}\cross\mathbb{R}_{++}$.\\
-                        \textbf{Answer}:
+                        \textbf{Answer}: We have \[
+                              \nabla^2 f(x)=\begin{bmatrix}
+                                    \dfrac{\delta^2 f}{\delta x_1^2} & \dfrac{\delta^2 f}{\delta x_1\delta x_2} \\\dfrac{\delta^2 f}{\delta x_2\delta x_1}&\dfrac{\delta^2 f}{\delta x_2^2}
+                              \end{bmatrix}=\begin{bmatrix}
+                                    \dfrac{2}{x_2}       & \dfrac{-2x_1}{x_2^2}  \\
+                                    \dfrac{-2x_1}{x_2^2} & \dfrac{2x_1^2}{x_2^3}
+                              \end{bmatrix}.
+                        \] $\tr(\nabla^2 f(x))=\dfrac{2}{x_2}+\dfrac{2x_1^2}{x_2^3}\geq 0$ on $\mathbb{R}\cross\mathbb{R}_{++}$ and $\det(\nabla^2 f(x))=\dfrac{2}{x_2}\cdot\dfrac{2x_1^2}{x_2^3}-\dfrac{-2x_1}{x_2^2}\cdot\dfrac{-2x_1}{x_2^2}=\dfrac{4x_1^2}{x_2^4}-\dfrac{4x_1^2}{x_2^4}=0$, therefore $\nabla^2 f(x)$ is positive semidefinite and $f$ is convex.
             \end{enumerate}
       \item Suppose $f:\mathbb{R}^n\rightarrow\mathbb{R}$ is a convex function. Show that the set of the global minimizers of $\min_xf(x)$ is a convex.\\
             \textbf{Answer}: Let $\Omega$ be the set of the global minimizers of $\min_xf(x)$; take $x,y\in\Omega$ and $\alpha\in[0,1]$, by the definition of global minimizer we have $f(x)=f(y)=\min_xf(x)$. Then $\alpha f(x)+(1-\alpha) f(y)=\alpha\min_xf(x)+(1-\alpha)\min_xf(x)=\min_xf(x)$. Them, since $f$ is a convex function, we have $f(\alpha x+(1-\alpha)y)\leq\alpha f(x)+(1-\alpha) f(y)=\min_xf(x)$. Therefore $\alpha x+(1-\alpha)y$ must also be a global minimizer, i.e. $\alpha x+(1-\alpha)y\in\Omega$, so $\Omega$ is convex.
@@ -53,7 +95,7 @@
             \textbf{Answer}:
             \begin{itemize}
                   \item [$\Rightarrow$:] Take any $y\in\text{dom}(f)$, since $f$ is continuously differentiable and convex, we have $f(y)\geq f(x^*)+\nabla f(x^*)^T(y-x)=f(x^*)$ (since $\nabla f(x^*)=0$). Since $y$ is arbitrary, $f(x^*)$ is a global minimizer by definition.
-                  \item [$\Leftarrow$:] Since $x^*$ is a global minimizer, then $f(y)\leq f(x^*)$ for any $y\in\text{dom}(f)$.
+                  \item [$\Leftarrow$:] Since $x^*$ is a global minimizer and therefore a local minimizer, we have $\nabla f(x^*)=0$.
             \end{itemize}
 \end{enumerate}
 \end{document}

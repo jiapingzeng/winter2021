@@ -1,0 +1,13 @@
+NAME: Jiaping Zeng
+EMAIL: jiapingzeng@ucla.edu
+ID: 905363270
+
+Included files:
+- convert.sh: convert driver shell script
+- convert.js: converts JSON to laureates.import
+- q1.sql: id of "Marie Curie"
+- q2.sql: country of affiliation "CERN"
+- q3.sql: family names associated with five or more Nobel prizes
+- q4.sql: number of locations the affiliation "University of California" has
+- q5.sql: number of years a Nobel prize was awarded to an organization in at least one category
+- laureate.php: JSON API that turns information of specified laureate

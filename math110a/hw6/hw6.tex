@@ -1,0 +1,165 @@
+\documentclass{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{relsize}
+\usepackage{multicol}
+
+\title{Math 110A Homework 4}
+\date{2/15/2021}
+\author{Jiaping Zeng}
+
+\begin{document}
+\setstretch{1.35}
+\maketitle
+
+\begin{enumerate}
+      \item Let $F$ be a field. We say that $a\in F$ is a \textit{multiple root} of $f(x)$ if $(x-a)^k$ is a factor of $f(x)$ for some $k\geq 2$.
+            \begin{enumerate}
+                  \item Prove that $a\in F$ is a multiple root of $f(x)\in F[x]$ if and only if $a$ is a root of both $f(x)$ and $f'(x)$.\\
+                        \textbf{Answer}:
+                        \begin{itemize}
+                              \item [$\Rightarrow$:] Since $a$ is a multiple root, $(x-a)^2$ is a factor of $f(x)$. Let $f(x)=(x-a)^2g(x)$, then $f'(x)=2(x-a)g+(x-a)^2g(x)$; clearly $(x-a)$ is a factor of both $f(x)$ and $f'(x)$.
+                              \item [$\Leftarrow$:] Since $a$ is a root of $f(x)$, $(x-a)$ is a factor of $f(x)$. Let $f(x)=(x-a)g(x)$, we have $f(a)=(a-a)g(a)=0$ and $f'(a)=(a-a)g(a)+(a-a)g'(a)=0$, so $(x-a)$ is a factor of both $f(x)$ and $f'(x)$. By Factor Theorem $a$ is a root.
+                        \end{itemize}
+                  \item If $f(x)\in F[x]$ and $f(x)$ and $f'(x)$ are relatively prime, prove that $f$ has no multiple root in $F$.\\
+                        \textbf{Answer}: Since $f(x)$ and $f'(x)$ are relatively prime, $(x-a)$ is not a root of both $f(x)$ and $f'(x)$ for any $a\in F$. Therefore by part (a) $f$ has no multiple root in $F$.
+                  \item Let $f(x)\in\mathbb{Q}[x]$ be a irreducible in $\mathbb{Q}[x]$. Prove that $f(x)$ has no multiple roots in $\mathbb{C}$.\\
+                        \textbf{Answer}: Since $f(x)$ is irreducible and $\deg(\gcd(f,f'))\leq\deg f'(x)\leq\deg f(x)$, $f(x)$ has no common factor with $f'(x)$. Therefore $\gcd(f,f')=1$ and there exists $g_1,g_2\in\mathbb{Q}[x]\subset\mathbb{C}[x]$ such that $fg_1+f'g_2=1$, which is also true in $\mathbb{C}[x]$. Therefore $f$ and $f'$ are relatively prime in $\mathbb{C}[x]$ and by part (b) $f$ has no multiple root in $\mathbb{C}$.
+            \end{enumerate}
+      \item $\mathbb{Q}[\pi]$ be the set of all real numbers of the form: \[r_0+r_1\pi+\cdots+r_n\pi^n,\] with $n\geq 0$ and each $r_i\in\mathbb{Q}$.
+            \begin{enumerate}
+                  \item Show that $\mathbb{Q}[\pi]$ is a subring of $\mathbb{R}$.\\
+                        \textbf{Answer}: We have $(r_0+r_1\pi+\cdots+r_n\pi^n)-(s_0+s_1\pi+\cdots+s_n\pi^n)=(r_0-s_0)+(r_1-s_1)\pi+\cdots+(r_n-s_n)\pi^n\in\mathbb{Q}[\pi]$ and $(r_0+r_1\pi+\cdots+r_n\pi^n)(s_0+s_1\pi+\cdots+s_n\pi^n)=(r_0s_0)+(r_1s_1)\pi^2+\cdots+(r_ns_n)\pi^{2n}\in\mathbb{Q}[\pi]$. Therefore $\mathbb{Q}[\pi]$ is closed under both subtraction and multiplication, so it is a subring of $\mathbb{R}$ by Theorem 3.6.
+                  \item Show that the function $\theta:\mathbb{Q}[x]\rightarrow\mathbb{Q}[\pi]$ defined by $\theta(f(x))=f(\pi)$ is an isomorphism.\\
+                        \textbf{Answer}:
+                        \begin{enumerate}
+                              \item Suppose that $\theta(f(x))=\theta(g(x))\implies f(\pi)=g(\pi)$, we have $r_0+r_1\pi+\cdots+r_n\pi^n=s_0+s_1\pi+\cdots+s_n\pi^n$. Since $\pi^k\notin\mathbb{Q}$ for any power of $k$, we must have $r_0=s_0,r_1=s_1,\ldots,r_n=s_n$. Therefore $f(x)=g(x)$ since equal coefficients implies equal polynomials, so $\theta$ is injective.
+                              \item We can take $f(x)=r_0+r_1x+\cdots+r_nx^n\in\mathbb{Q}[x]$ such that $\theta(f(x))=r_0+r_1\pi+\cdots+r_n\pi^n$ for every element in $\mathbb{Q}[\pi]$. Therefore $\theta$ is surjective.
+                              \item Let $f(x),g(x)\in\mathbb{R}[x]$, $p(x)=f(x)+g(x)$ and $q(x)=f(x)g(x)$, we have \[\theta(f(x)+g(x))=\theta(p(x))=p(\pi)=f(\pi)+g(\pi)=\theta(f(x))+\theta(g(x))\] and \[\theta(f(x)g(x))=\theta(q(x))=q(\pi)=f(\pi)g(\pi)=\theta(f(x))\theta(g(x)).\]
+                        \end{enumerate}
+            \end{enumerate}
+      \item Let $\mathbb{Q}[\sqrt{2}]$ be the set of all real numbers of the form: \[r_0+r_1(\sqrt{2})+\cdots+r_n(\sqrt{2})^n,\] with $n\geq 0$ and each $r_i\in\mathbb{Q}$.
+            \begin{enumerate}
+                  \item Show that $\mathbb{Q}[\sqrt{2}]$ is a subring of $\mathbb{R}$.\\
+                        \textbf{Answer}: We have $(r_0+r_1(\sqrt{2})+\cdots+r_n(\sqrt{2})^n)-(s_0+s_1(\sqrt{2})+\cdots+s_n(\sqrt{2})^n)=(r_0-s_0)+(r_1-s_1)(\sqrt{2})+\cdots+(r_n-s_n)(\sqrt{2})^n\in\mathbb{Q}[\sqrt{2}]$ and $(r_0+r_1(\sqrt{2})+\cdots+r_n(\sqrt{2})^n)(s_0+s_1(\sqrt{2})+\cdots+s_n(\sqrt{2})^n)=(r_0s_0)+(r_1s_1)(\sqrt{2})^2+\cdots+(r_ns_n)(\sqrt{2})^{2n}\in\mathbb{Q}[\sqrt{2}]$. Therefore $\mathbb{Q}[\sqrt{2}]$ is closed under both subtraction and multiplication, so it is a subring of $\mathbb{R}$ by Theorem 3.6.
+                  \item Show that the function $\theta:\mathbb{Q}[x]\rightarrow\mathbb{Q}[\sqrt{2}]$ defined by $\theta(f(x))=f(\sqrt{2})$ is a surjective homomorphism, but not an isomorphism.\\
+                        \textbf{Answer}:
+                        \begin{enumerate}
+                              \item Take $f(x)=2$ and $g(x)=x^2$, we have $\theta(f(x))=2=\theta(g(x))$ for $f(x)\neq g(x)$. Therefore $\theta$ is not injective.
+                              \item We can take $f(x)=r_0+r_1x+\cdots+r_nx^n\in\mathbb{Q}[x]$ such that $\theta(f(x))=r_0+r_1(\sqrt{2})+\cdots+r_n(\sqrt{2})^n$ for every element in $\mathbb{Q}[\sqrt{2}]$. Therefore $\theta$ is surjective.
+                              \item Let $f(x),g(x)\in\mathbb{R}[x]$, $p(x)=f(x)+g(x)$ and $q(x)=f(x)g(x)$, we have \[\theta(f(x)+g(x))=\theta(p(x))=p(\sqrt{2})=f(\sqrt{2})+g(\sqrt{2})=\theta(f(x))+\theta(g(x))\] and \[\theta(f(x)g(x))=\theta(q(x))=q(\sqrt{2})=f(\sqrt{2})g(\sqrt{2})=\theta(f(x))\theta(g(x)).\]
+                        \end{enumerate}
+            \end{enumerate}
+      \item Use the rational root test to write each polynomial as a product of irreducibles in $\mathbb{Q}[x]$:
+            \begin{enumerate}[start=2]
+                  \item $x^5+4x^4+x^3-x^2$\addtocounter{enumii}{1}\\
+                        \textbf{Answer}: We have $r=\pm 1$ and $s=\pm 1$, so the only possible roots are $1$ and $-1$. However, substituting $1$ and $-1$ gives us $5$ and $1$ respectively, therefore neither is a root and $x^5+4x^4+x^3-x^2$ is irreducible in $\mathbb{Q}[x]$.
+                  \item $2x^4-5x^3+3x^2+4x-6$\addtocounter{enumii}{1}\\
+                        \textbf{Answer}: We have $r=\pm 1, \pm 2, \pm 3$ and $s=\pm 1, \pm 2$, so the possible roots are $\pm 1,\pm 2,\pm 3,\pm\dfrac{1}{2},\pm\dfrac{3}{2}$. We can substitue them into $2x^4-5x^3+3x^2+4x-6$ as follows:
+                        \begin{center}
+                              \begin{tabular}{|c|c|c|}
+                                    \hline
+                                    $a$            & $f(a)$          & is root? \\
+                                    \hline
+                                    $-1$           & $0$             & yes      \\
+                                    \hline
+                                    $1$            & $-2$            & no       \\
+                                    \hline
+                                    $-2$           & $70$            & no       \\
+                                    \hline
+                                    $2$            & $6$             & no       \\
+                                    \hline
+                                    $-3$           & $306$           & no       \\
+                                    \hline
+                                    $3$            & $60$            & no       \\
+                                    \hline
+                                    $-\frac{1}{2}$ & $-\frac{13}{2}$ & no       \\
+                                    \hline
+                                    $\frac{1}{2}$  & $-\frac{15}{4}$ & no       \\
+                                    \hline
+                                    $-\frac{3}{2}$ & $\frac{87}{4}$  & no       \\
+                                    \hline
+                                    $\frac{3}{2}$  & $0$             & yes      \\
+                                    \hline
+                              \end{tabular}
+                        \end{center}
+                        Therefore $x+1$ and $x-\dfrac{3}{2}$ are factors; then $\dfrac{2x^4-5x^3+3x^2+4x-6}{(x+1)(x-\frac{3}{2})}=2(x^2-2x+2)$, so $2x^4-5x^3+3x^2+4x-6=(x+1)(2x-3)(x^2-2x+2)$.
+                  \item $6x^4-31x^3+25x^2+33x+7$\\
+                        \textbf{Answer}: We have $r=\pm 1, \pm 7$ and $s=\pm 1, \pm 2, \pm 3$, so the possible roots are $\pm 1,\pm\frac{1}{2},\pm\frac{1}{3},\pm 7,\pm\frac{7}{2},\pm\frac{7}{3}$. We can substitute them into $6x^4-31x^3+25x^2+33x+7$ as follows:
+                        \begin{center}
+                              \begin{tabular}{|c|c|c|}
+                                    \hline
+                                    $a$            & $f(a)$           & is root? \\
+                                    \hline
+                                    $-1$           & $36$             & no       \\
+                                    \hline
+                                    $1$            & $40$             & no       \\
+                                    \hline
+                                    $-\frac{1}{2}$ & $1$              & no       \\
+                                    \hline
+                                    $\frac{1}{2}$  & $\frac{105}{4}$  & no       \\
+                                    \hline
+                                    $-\frac{1}{3}$ & $0$              & yes      \\
+                                    \hline
+                                    $\frac{1}{3}$  & $\frac{532}{27}$ & no       \\
+                                    \hline
+                                    $-7$           & $26040$          & no       \\
+                                    \hline
+                                    $7$            & $5236$           & no       \\
+                                    \hline
+                                    $-\frac{7}{2}$ & $\frac{9709}{4}$ & no       \\
+                                    \hline
+                                    $\frac{7}{2}$  & $0$              & yes      \\
+                                    \hline
+                                    $-\frac{7}{3}$ & $\frac{5740}{9}$ & no       \\
+                                    \hline
+                                    $\frac{7}{3}$  & $\frac{112}{27}$ & yes      \\
+                                    \hline
+                              \end{tabular}
+                        \end{center}
+                        Therefore $x+\dfrac{1}{3}$ and $x-\dfrac{7}{2}$ are factors; then $\dfrac{6x^4-31x^3+25x^2+33x+7}{(x+\frac{1}{3})(x-\frac{7}{2})}=6(x^2-2x-1)$, so $6x^4-31x^3+25x^2+33x+7=(2x-7)(3x+1)(x^2-2x-1)$.
+            \end{enumerate}
+      \item Show that each polynomial is irreducible in $\mathbb{Q}[x]$, using the method of Example 3 from Section 4.5 (page 115):
+            \begin{enumerate}
+                  \item $x^4+2x^3+x+1$\\
+                        \textbf{Answer}: By contradiction. Let $f(x)=x^4+2x^3+x+1$; if $f(x)$ is reducible, it can be factored as the product of two nonconstant polynomials in $\mathbb{Q}[x]$. If either of these factors has degree 1, then $f(x)$ has a root in $\mathbb{Q}$. But the Rational Root Test shows that $f(x)$ has no roots in $\mathbb{Q}$ (The only possibilities aree $\pm 1$ and neither is a root). This if $f(x)$ is reducible, the only possible factorization is as a product of two quadratics, by Theorem 4.2. In this case Theorem 4.23 shows that there is such a factorization in $\mathbb{Z}[x]$. Furthermore, there is a factorization as a product of monic quadratics in $\mathbb{Z}[x]$, i.e. \[(x^2+ax+b)(x^2+cx+d)=x^4+2x^3+x+1,\] with $a,b,c,d\in\mathbb{Z}$. Multiplying out the left-hand side, we have \[x^4+(a+c)x^3+(ac+b+d)x^2+(ad+bc)x+bd=x^4+2x^3+0x^2+x+1.\] Equal polynomials have equal coefficients; hence, \[a+c=2,ac+b+d=0,ad+bc=1,bd=1.\] Since $bd=1$ in $\mathbb{Z}$ implies that $b=d=1$ or $b=d=-1$, using the third equation we have two possibilities: $ad+bc=1\implies a+c=\pm 1$. But this contradicts with the first equation, so a factorization of $f(x)$ as a product of quadratics in $\mathbb{Z}[x]$, and, hence in $\mathbb{Q}[x]$, is impossible. Therefore, $f(x)$ is irreducible in $\mathbb{Q}[x]$.
+                  \item $x^4-2x^2+8x+1$\\
+                        \textbf{Answer}: By contradiction. Let $f(x)=x^4-2x^2+8x+1$; if $f(x)$ is reducible, it can be factored as the product of two nonconstant polynomials in $\mathbb{Q}[x]$. If either of these factors has degree 1, then $f(x)$ has a root in $\mathbb{Q}$. But the Rational Root Test shows that $f(x)$ has no roots in $\mathbb{Q}$ (The only possibilities aree $\pm 1$ and neither is a root). This if $f(x)$ is reducible, the only possible factorization is as a product of two quadratics, by Theorem 4.2. In this case Theorem 4.23 shows that there is such a factorization in $\mathbb{Z}[x]$. Furthermore, there is a factorization as a product of monic quadratics in $\mathbb{Z}[x]$, i.e. \[(x^2+ax+b)(x^2+cx+d)=x^4-2x^2+8x+1,\] with $a,b,c,d\in\mathbb{Z}$. Multiplying out the left-hand side, we have \[x^4+(a+c)x^3+(ac+b+d)x^2+(ad+bc)x+bd=x^4+0x^3-2x^2+8x+1.\] Equal polynomials have equal coefficients; hence, \[a+c=0,ac+b+d=-2,ad+bc=8,bd=1.\] Since $bd=1$ in $\mathbb{Z}$ implies that $b=d=1$ or $b=d=-1$, using the third equation we have two possibilities: $ad+bc=1\implies a+c=\pm 8$. But this contradicts with the first equation, so a factorization of $f(x)$ as a product of quadratics in $\mathbb{Z}[x]$, and, hence in $\mathbb{Q}[x]$, is impossible. Therefore, $f(x)$ is irreducible in $\mathbb{Q}[x]$.
+            \end{enumerate}
+      \item Show that $9x^4+4x^3-3x+7$ is irreducible in $\mathbb{Z}[x]$ by finding a prime $p\neq 3$ such that $f(x)$ is irreducible in $(\mathbb{Z}/p\mathbb{Z})[x]$.\\
+            \textbf{Answer}: Let $p=2$, we will first show that $9x^4+4x^3-3x+7=0$ has no solution in $\mathbb{Z}/2\mathbb{Z}[x]$:
+            \begin{center}
+                  \begin{tabular}{c|c|c}
+                        $x$   & $9x^4+4x^3-3x+7$                             & is solution? \\
+                        \hline
+                        $[0]$ & $9[0]^4+4[0]^3-3[0]+[7]=[0]+[0]-[0]+[7]=[1]$ & no           \\
+                        $[1]$ & $9[1]^4+4[1]^3-3[1]+[7]=[9]+[4]-[3]+[7]=[1]$ & no
+                  \end{tabular}
+            \end{center}
+            Now we will show that $9x^4+4x^3-3x+7=0$ does not have any quadratic factors in $\mathbb{Z}/2\mathbb{Z}[x]$ either. The only possible quadratic factors in $\mathbb{Z}/2\mathbb{Z}[x]$ are $x^2,x^2+x,x^2+1$ and $x^2+x+1$, however none of them divides $9x^4+4x^3-3x+7$, so $9x^4+4x^3-3x+7$ has no quadratic factor and therefore it is irreducible in $\mathbb{Z}/2\mathbb{Z}$.
+      \item Let $F$ be a field.
+            \begin{enumerate}
+                  \item Let $\varphi:F[x]\rightarrow F[x]$ be an isomorphism such that $\varphi(a)=a$ for all $a\in F$. Prove that $f(x)$ is irreducible in $F[x]$ if and only if $\varphi(f(x))$ is.\\
+                        \textbf{Answer}: We will show that $\varphi(g(x))$ is nonconstant if and only if $g(x)$ is.
+                        \begin{itemize}
+                              \item [$\Rightarrow$:] If $\varphi(g(x))$ is nonconstant, $g(x)$ cannot be constant since $\varphi$ is surjective.
+                              \item [$\Leftarrow$:] Let $c=\varphi(g(x))$; If $g(x)$ is nonconstant, $\varphi(g(x))$ cannot be constant as we would have $\varphi(g(x))=c=\varphi(c)$ which would mean that $\varphi$ would not be injective.
+                        \end{itemize}
+                        Therefore $f(x)$ is irreducible in $F[x]$ if and only if $\varphi(f(x))$ is.
+                  \item Take any $c\in F$. Show that the map $\varphi:F[x]\rightarrow F[x]$ given by $\varphi(f(x))=f(x+c)$ is an isomorphism such that $\varphi(a)=a$.\\
+                  \textbf{Answer}: Take $\varphi^{-1}(f(x))=f(x-c)$, we have $\varphi^{-1}(\varphi(f(x)))=\varphi^{-1}(f(x+c))=f(x)$ and $\varphi(\varphi^{-1}(f(x)))=\varphi(f(x-c))=f(x)$. Therefore $\varphi$ is invertible and is a bijection. Now let $f(x),g(x)\in F[x]$, $p(x)=f(x)+g(x)$ and $q(x)=f(x)g(x)$, we have \[\varphi(f(x)+g(x))=\varphi(p(x))=\varphi(f(x))+\varphi(g(x))\] and \[\varphi(f(x)g(x))=\varphi(q(x))=\varphi(f(x))\varphi(g(x)).\] Therefore $\varphi$ is an isomorphism.
+                  \item Use parts (a) and (b) to show that $f(x)$ is irreducible in $F[x]$ if and only if $f(x+c)$ is.\\
+                  \textbf{Answer}: By part (b), $\varphi(f(x))=f(x+c)$ is an isomorphism that satisfies the condition of part (a), therefore $f(x)$ is irreducible in $F[x]$ if and only if $f(x+c)$ is.
+            \end{enumerate}
+      \item Prove that for $p$ prime, $f(x)=x^{p-1}+x^{p-2}+\cdots+x^2+x+1$ is irreducible in $\mathbb{Q}[x]$.\\
+            \textbf{Answer}: By Eisenstein's criterion, if $p$ prime and $p$ divides $a_0,a_1,\ldots,a_{n-1}$ but not $a_n$ and $p^2$ does not divide $a_0$, $f(x)$ is irreducible in $\mathbb{Q}[x]$.
+      \item Find a monic polynomial in $\mathbb{R}[x]$ of least possible degree with $1-i$ and $2i$ as roots.\\
+            \textbf{Answer}: Suppose $f(x)\in\mathbb{R}[x]$ is our polynomial; by Lemma 4.29 $1+i$ and $-2i$ are also roots in addition to $1-i$ and $2i$. Therefore $f(x)=(x-1-i)(x-1+i)(x-2i)(x+2i)=x^4-2x^3+6x^2-8x+8$.
+      \item Show that a polynomial of odd degree in $\mathbb{R}[x]$ with no multiple roots must have an odd number of roots in $\mathbb{R}[x]$.\\
+            \textbf{Answer}: By Corollary 4.31 any polynomial of odd degree $f(x)$ in $\mathbb{R}$ has a root in $\mathbb{R}$; by Lemma 4.29, for every copmlex root $a+bi$, its complex conjugate $a-bi$ is also a root. Suppose $r_k$ are the real roots of $f(x)$ and $s_k,\overline{s_k}$ are the complex roots, we have $f(x)=(x-r_1)\ldots(x-r_m)(x-s_1)(x-\overline{s_1})\ldots(x-s_n)(x-\overline{s_n})$. Therefore $\deg(f(x))=m+2n$; since $f(x)$ is a polynomial of odd degree $m$ must be odd, therefore $f(x)$ must have an odd number of real roots.
+\end{enumerate}
+\end{document}

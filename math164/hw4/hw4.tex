@@ -7,9 +7,10 @@
 \usepackage{physics}
 \usepackage{relsize}
 \usepackage{graphicx}
+\usepackage{bm}
 
-\title{Math 164 Homework 3}
-\date{2/15/2021}
+\title{Math 164 Homework 4}
+\date{2/22/2021}
 \author{Jiaping Zeng}
 
 \begin{document}
@@ -17,39 +18,111 @@
 \maketitle
 
 \begin{enumerate}
-      \item Show each of the following set is convex.
+      \item Consider the function \[f(x)=\dfrac{1}{2}x^T\begin{pmatrix}1&0\\0&2\end{pmatrix}x\]
             \begin{enumerate}
-                  \item Hyperplane: $\{x:a^Tx=b\}$ with $a\neq 0\in\mathbb{R}^n$ and $b\in\mathbb{R}$.\\
-                        \textbf{Answer}: Take $x,y\in\Omega\implies a^Tx=a^Ty=b$, for $\alpha\in[0,1]$, we have $\alpha b+(1-\alpha)b=b\implies\alpha a^Tx+(1-\alpha) a^Ty=b\implies a^T(\alpha x+(1-\alpha)y)=b$, so $\alpha x+(1-\alpha)y\in\Omega$ and therefore $\Omega$ is a convex set.
-                  \item Halfspace: $\{x:a^Tx\leq b\}$ with $a\neq 0\in\mathbb{R}^n$ and $b\in\mathbb{R}$.\\
-                        \textbf{Answer}: Take $x,y\in\Omega\implies a^Tx\leq b,b^Tx\leq b$, for $\alpha\in[0,1]$, we have $\alpha a^Tx\leq\alpha b,(1-\alpha)a^Ty\leq (1-\alpha)b\implies\alpha a^Tx+(1-\alpha)a^Ty\leq\alpha b+(1-\alpha)b\implies a^T(\alpha x+(1-\alpha)y)\leq b$, so $\alpha x+(1-\alpha)y\in\Omega$ and therefore $\Omega$ is a convex set.
-                  \item Norm Ball: $\{x:\norm{x-x_c}\leq r\}$ with $>0$ and $x_c\in\mathbb{R}^n$.\\
-                        \textbf{Answer}: Take $x,y\in\Omega\implies\norm{x-x_c}\leq r,\norm{y-y_c}\leq r$, for $\alpha\in[0,1]$, we have $((1-\alpha)\norm{x-x_c}+\alpha\norm{y-y_c})$
-                  \item Polyhedron: $\{x:Ax\leq b,Cx=d\}$ with $A^{m\cross n},C\in\mathbb{R}^{p\cross n}$ and $b\in\mathbb{R}^m,d\in\mathbb{R}^p$.\\
-                        \textbf{Answer}:
-                  \item Nonnegative Orthant: $\mathbb{R}_+^n=\{x:x\geq 0\}$.\\
-                        \textbf{Answer}:
-                  \item Positive semidefinite cone: $S_+^n=\{X\in\mathbb{R}^{n\cross n}:X=X^T,X\succeq 0\}$\\
-                        \textbf{Answer}:
+                  \item Find the global minimizer $x^*$ of $f(x)$.\\
+                        \textbf{Answer}: Let $x=\begin{pmatrix}
+                                    p \\q
+                              \end{pmatrix}$, we have \[
+                              f(x)=\dfrac{1}{2}\begin{pmatrix}
+                                    p \\q
+                              \end{pmatrix}^T\begin{pmatrix}
+                                    1 & 0 \\0&2
+                              \end{pmatrix}\begin{pmatrix}
+                                    p \\q
+                              \end{pmatrix}=\dfrac{1}{2}p^2+q^2,
+                        \] therefore, \[
+                              \nabla f(x)=\begin{pmatrix}
+                                    p \\2q
+                              \end{pmatrix}
+                              \text{ and }
+                              \nabla^2 f(x)=\begin{pmatrix}
+                                    1 & 0 \\
+                                    0 & 2
+                              \end{pmatrix}.
+                        \] Setting $\nabla f(x)=0$ gives us $p=q=0$ as the only critical point; since it is easy to see that the eigenvalues of the Hessian is always positive (therefore $f$ is convex), it is the global minimizer.
+                  \item Write down the first iteration of gradient descent method with the stepsize chosen as one over the Lipschitz constant of $\nabla f(x)$ and starting point as $x_0=\begin{pmatrix}1\\1\end{pmatrix}$.\\
+                        \textbf{Answer}: Since the maximum eigenvalue of the Hessian is $2$, our Lipschitz constant is $L=2$. Therefore, \[
+                              x_1=x_0-\frac{1}{L}\nabla f(x_0)=\begin{pmatrix}
+                                    1 \\1
+                              \end{pmatrix}-\frac{1}{2}\begin{pmatrix}
+                                    1 \\2
+                              \end{pmatrix}=\begin{pmatrix}
+                                    \frac{1}{2} \\0
+                              \end{pmatrix}.
+                        \]
+                  \item Write down the closed-form expression of $x_k$ in the $k$th iteration of gradient descent method for any positive integer $k$.\\
+                        \textbf{Answer}: We have \[
+                              x_{k+1}=x_k-\frac{1}{L}\nabla f(x_k)=\begin{pmatrix}
+                                    x_{k_1} \\x_{k_2}
+                              \end{pmatrix}-\frac{1}{2}\begin{pmatrix}
+                                    x_{k_1} \\2x_{k_2}
+                              \end{pmatrix}=\begin{pmatrix}
+                                    \frac{1}{2}x_{k_1} \\0
+                              \end{pmatrix}.
+                        \] Note that we are halving the first component by half each time with the second component staying at $0$, with $x_0=\begin{pmatrix}1 \\1\end{pmatrix}$. Therefore
+                        \[
+                              x_k=\begin{pmatrix}
+                                    \frac{1}{2^k} \\0
+                              \end{pmatrix}.
+                        \]
+                  \item After how many iterations, we have $\norm{x_k-x^*}_2<\frac{1}{100}$.\\
+                        \textbf{Answer}: We have $\frac{1}{2^k}<\frac{1}{100}\implies 2^k>100\implies k=7$, therefore we have $\norm{x_k-x^*}_2<\frac{1}{100}$ after $7$ iterations.
+                  \item What's the convergence rate of the sequence $\{\norm{x_k-\bm{x^*}}_2\}$? (sublinear/linear/quadratic)\\
+                        \textbf{Answer}: We have $\mathlarger{\lim_{k\rightarrow\infty}}\dfrac{\norm{x_{k+1}-\bm{x^*}}_2}{\norm{x_k-\bm{x^*}}_2}=\dfrac{1}{2}$, so it is linear.
             \end{enumerate}
-      \item For each of the following functions, determine whether it is convex or concave or neither or both. Please explain the rationale for your answer.
+      \item Consider the function \[f(x)=\dfrac{1}{2}x^T\begin{pmatrix}1&0\\0&2\end{pmatrix}x\]
             \begin{enumerate}
-                  \item $f(x_1,x_2)=x_1^2+x_2^4$.\\
-                        \textbf{Answer}:
-                  \item $f(x_1,x_2)=e^{ax_1}+e^{bx_2}$ with $a,b\in\mathbb{R}$.\\
-                        \textbf{Answer}:
-                  \item $f(x_1,x_2)=x_1\log(x_1)+x_2\log(x_2)$ on $\mathbb{R}_{++}^2$.\\
-                        \textbf{Answer}:
-                  \item $f(x_1,x_2)=x_1x_2$ on $\mathbb{R}_{++}^2$.\\
-                        \textbf{Answer}:
-                  \item $f(x_1,x_2)=1/(x_1x_2)$ on $\mathbb{R}_{++}^2$.\\
-                        \textbf{Answer}:
-                  \item $f(x_1,x_2)=x_1^2/x_2$ on $\mathbb{R}\cross\mathbb{R}_{++}$.\\
-                        \textbf{Answer}:
+                  \item Write down the first iteration of Newton's method and starting point $x_0=\begin{pmatrix}1\\1\end{pmatrix}$.\\
+                        \textbf{Answer}: Let $x=\begin{pmatrix}
+                                    p \\q
+                              \end{pmatrix}$, we have \[
+                              f(x)=\dfrac{1}{2}\begin{pmatrix}
+                                    p \\q
+                              \end{pmatrix}^T\begin{pmatrix}
+                                    1 & 0 \\0&2
+                              \end{pmatrix}\begin{pmatrix}
+                                    p \\q
+                              \end{pmatrix}=\dfrac{1}{2}p^2+q^2,\] therefore, \[
+                              \nabla f(x)=\begin{pmatrix}
+                                    p \\2q
+                              \end{pmatrix}
+                              \text{ and }
+                              \nabla^2 f(x)=\begin{pmatrix}
+                                    1 & 0 \\
+                                    0 & 2
+                              \end{pmatrix}.
+                        \] Then our search direction is \[
+                              d_0^N=-\nabla^2f(x_0)^{-1}\nabla f(x_0)=-\begin{pmatrix}
+                                    1 & 0 \\0&\dfrac{1}{2}
+                              \end{pmatrix}\begin{pmatrix}
+                                    1 \\2
+                              \end{pmatrix}=\begin{pmatrix}
+                                    -1 \\-1
+                              \end{pmatrix},
+                        \] so \[
+                              x_1=x_0+d_0^N=\begin{pmatrix}
+                                    1 \\1
+                              \end{pmatrix}+\begin{pmatrix}
+                                    -1 \\-1
+                              \end{pmatrix}=\begin{pmatrix}
+                                    0 \\0
+                              \end{pmatrix}.
+                        \]
+                  \item Write down the closed-form expression of $x_k$ in the $k$th iteration of Newton's method for any positive integer $k$.\\
+                        \textbf{Answer}: \[
+                              x_{k+1}=x_k+d_k^N=\begin{pmatrix}
+                                    x_{k_1} \\x_{k_2}
+                              \end{pmatrix}-\begin{pmatrix}
+                                    1 & 0 \\0&\dfrac{1}{2}
+                              \end{pmatrix}\begin{pmatrix}
+                                    x_{k_1} \\2x_{k_2}
+                              \end{pmatrix}=\begin{pmatrix}
+                                    0 \\0
+                              \end{pmatrix}.
+                        \]
+                  \item After how many iterations, we have $\norm{x_k-x^*}_2<\frac{1}{100}$.\\
+                        \textbf{Answer}: As shown in part (a), $x_1=\bm{0}$. Therefore we have $\norm{x_k-x^*}_2<\frac{1}{100}$ after one iteration.
             \end{enumerate}
-      \item Suppose $f:\mathbb{R}^n\rightarrow\mathbb{R}$ is a convex function. Show that the set of the global  minimizers of $\min_xf(x)$ is a convex.\\
-            \textbf{Answer}:
-      \item Suppose $f:\mathbb{R}^n\rightarrow\mathbb{R}$ is a continuously differentiable and convex function. Show that $\nabla f(x^*)=0$ if and only if $x^*$ is a global minimizer of $\min_xf(x)$.\\
-            \textbf{Answer}:
 \end{enumerate}
 \end{document}

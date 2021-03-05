@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{relsize}
+\usepackage{graphicx}
+
+\title{CS 143 Homework 5}
+\date{3/2/2021}
+\author{Jiaping Zeng}
+
+\begin{document}
+\setstretch{1.35}
+\maketitle
+
+\begin{enumerate}
+    \item Average seek time $=10$ms\\Average rotational delay $=\frac{0.5}{6000/60}=5$ms\\Transfer time $=\frac{1}{(6000/60)\cdot 500}=0.02$ms\\Therefore the average read time is $10+5+0.02=15.02$ms.
+    \item Each tuple takes $2+5*4+30+20=72$ bytes to store, so 1000 tuples would take $72,000$ bytes which would require $72000/1024=70.31$ $\approx$ 71 blocks to store.
+    \item We would need to scan through all the tuples once so we would have a transfer time of $\frac{71}{(6000/60)\cdot 500}=1.42$ms. Adding in the average seek time and rotational delay from question 1 we have a total read time of $16.42$ms.
+    \item For each cluster we would have a transfer time of $\frac{3}{(6000/60)\cdot 500}=0.06$ms, but we would need to to seek and rotate once for every cluster. Therefore we have $24*(10+5+0.06)=361.44$ms.
+    \item The expected time would depend on how many tuples satisfy "year=2005"; since we have a non-clustering index on the year attribute, we can go to the "year=2005" tuples directly without needing to scan through the entire table.
+\end{enumerate}
+\end{document}

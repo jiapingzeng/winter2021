@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{relsize}
+\usepackage{multicol}
+\usepackage{chngpage}
+
+\title{Math 110A Homework 8}
+\date{3/7/2021}
+\author{Jiaping Zeng}
+
+\begin{document}
+\setstretch{1.35}
+\maketitle
+
+\begin{enumerate}
+      \item Let $R$ be an ring with identity and let $I$ be an ideal of $R$.
+            \begin{enumerate}
+                  \item If $1_R\in I$, prove that $I=R$.\\
+                        \textbf{Answer}: Take any $r\in R$, we must have $1_R\cdot r=r\in I$ by definition of ideal. Therefore every element of $R$ is in $I$, so $I=R$.
+                  \item If $I$ contains a unit, prove that $I=R$.\\
+                        \textbf{Answer}: Let $a\in I$ be a unit, then by definition $ax=1_R$ has a solution in $R$. Then by definition of ideal we have $ax=1_R\in I$, therefore $I=R$ by part (a).
+                  \item If $I$ is an ideal in a field $F$, prove that either $I=(0_F)$ or $I=F$.\\
+                        \textbf{Answer}: By definition of field, $1_F\neq 0_F$. Then, if $1_F\in I$, we have $I=F$ by part (a); if not, we can only have $I=(0_F)$ or else we would again have $I=F$ by part (b) since every nonzero element is a unit.
+            \end{enumerate}
+      \item Let $I$ and $J$ be ideals in $R$.
+            \begin{enumerate}
+                  \item Prove that the set $K=\{a+b\mid a\in I, b\in J\}$ is an ideal in $R$ that contains both $I$ and $J$. $K$ is called the \textbf{sum} of $I$ and $J$, and is denoted $I+J$.\\
+                        \textbf{Answer}: Take $a,b\in I$ and $c,d\in J$, then $a+c\in K$ and $b+d\in K$. We have $(a+c)-(b+d)=(a-b)+(c-d)\in K$ since $a-b\in I$ and $c-d\in J$ by Theorem 6.1. We also have $r(a+c)\in K$ and $(a+c)\in K$ since $r(a+c)=ra+rc$ and $(a+c)r=ar+cr$, where $ra,ar\in I$ and $rc,cr\in J$ by Theorem 6.1. Then $K$ satisfies both conditions of Theorem 6.1 and is therefore an ideal. It also contains both $I$ and $J$ upon taking $b=0$ or $a=0$ respectively in the definition.
+                  \item Is the set $K=\{ab\mid a\in I, b\in J\}$ always an ideal in $R$?\\
+                        \textbf{Answer}: No; take $R=\mathbb{Z}$, $I=2\mathbb{Z}$ and $J=3\mathbb{Z}$. We have $4\in I\subset K$ and $9\in J\subset K$, so by Theorem 6.1 we must have $9-4=5\in IJ$ which is not true.
+                  \item Let $IJ$ denote the set of all possible finite sums of elements of the form $ab$ (with $a\in I, b\in J$), that is: \[IJ=\{a_1b_1+a_2b_2+\cdots+a_nb_n\mid n\geq 1, a_k\in I, b_k\in J\}.\] Prove that $IJ$ is an ideal of $R$. $IJ$ is called the \textbf{product} of $I$ and $J$.\\
+                        \textbf{Answer}: Take $p,q\in IJ$ with $p=a_1b_1+a_2b_2+\cdots+a_nb_n$ and $q=c_1d_1+c_2d_2+\cdots+c_nd_n$, we have $p-q=a_1b_1+a_2b_2+\cdots+a_nb_n-c_1d_1-c_2d_2-\cdots-c_nd_n$ which is in $IJ$ since each $a_kb_k$ and $-c_kd_k$ is in $IJ$. Now take $r\in R$, we have $rp=r(a_1b_1+a_2b_2+\cdots+a_nb_n)=(ra_1)b_1+(ra_2)b_2+\cdots+(ra_n)b_n$. Since $ra_k\in I$ by Theorem 6.1 and $b_k\in J$, $rp\in IJ$. Similarly $pr\in IJ$ since $pr=(a_1b_1+a_2b_2+\cdots+a_nb_n)r=a_1(b_1r)+a_2(b_2r)+\cdots+a_n(b_nr)$. Therefore $IJ$ is an ideal by Theorem 6.1.
+            \end{enumerate}
+      \item Let $R$ be an integral domain and $a,b\in R$. Show that $(a)=(b)$ if and only if $a=bu$ for some unit $u\in R$.\\
+            \textbf{Answer}:
+      \item Let $R$ be a commutative ring with $1_R\neq 0_R$, whose only ideals are $(0)$ and $R$. Prove that $R$ is a field.\\
+            \textbf{Answer}:
+\end{enumerate}
+\end{document}

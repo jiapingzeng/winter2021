@@ -9,8 +9,8 @@
 \usepackage{graphicx}
 \usepackage{bm}
 
-\title{Math 164 Homework 4}
-\date{2/22/2021}
+\title{Math 164 Homework 5}
+\date{3/5/2021}
 \author{Jiaping Zeng}
 
 \begin{document}
@@ -18,111 +18,6 @@
 \maketitle
 
 \begin{enumerate}
-      \item Consider the function \[f(x)=\dfrac{1}{2}x^T\begin{pmatrix}1&0\\0&2\end{pmatrix}x\]
-            \begin{enumerate}
-                  \item Find the global minimizer $x^*$ of $f(x)$.\\
-                        \textbf{Answer}: Let $x=\begin{pmatrix}
-                                    p \\q
-                              \end{pmatrix}$, we have \[
-                              f(x)=\dfrac{1}{2}\begin{pmatrix}
-                                    p \\q
-                              \end{pmatrix}^T\begin{pmatrix}
-                                    1 & 0 \\0&2
-                              \end{pmatrix}\begin{pmatrix}
-                                    p \\q
-                              \end{pmatrix}=\dfrac{1}{2}p^2+q^2,
-                        \] therefore, \[
-                              \nabla f(x)=\begin{pmatrix}
-                                    p \\2q
-                              \end{pmatrix}
-                              \text{ and }
-                              \nabla^2 f(x)=\begin{pmatrix}
-                                    1 & 0 \\
-                                    0 & 2
-                              \end{pmatrix}.
-                        \] Setting $\nabla f(x)=0$ gives us $p=q=0$ as the only critical point; since it is easy to see that the eigenvalues of the Hessian is always positive (therefore $f$ is convex), it is the global minimizer.
-                  \item Write down the first iteration of gradient descent method with the stepsize chosen as one over the Lipschitz constant of $\nabla f(x)$ and starting point as $x_0=\begin{pmatrix}1\\1\end{pmatrix}$.\\
-                        \textbf{Answer}: Since the maximum eigenvalue of the Hessian is $2$, our Lipschitz constant is $L=2$. Therefore, \[
-                              x_1=x_0-\frac{1}{L}\nabla f(x_0)=\begin{pmatrix}
-                                    1 \\1
-                              \end{pmatrix}-\frac{1}{2}\begin{pmatrix}
-                                    1 \\2
-                              \end{pmatrix}=\begin{pmatrix}
-                                    \frac{1}{2} \\0
-                              \end{pmatrix}.
-                        \]
-                  \item Write down the closed-form expression of $x_k$ in the $k$th iteration of gradient descent method for any positive integer $k$.\\
-                        \textbf{Answer}: We have \[
-                              x_{k+1}=x_k-\frac{1}{L}\nabla f(x_k)=\begin{pmatrix}
-                                    x_{k_1} \\x_{k_2}
-                              \end{pmatrix}-\frac{1}{2}\begin{pmatrix}
-                                    x_{k_1} \\2x_{k_2}
-                              \end{pmatrix}=\begin{pmatrix}
-                                    \frac{1}{2}x_{k_1} \\0
-                              \end{pmatrix}.
-                        \] Note that we are halving the first component by half each time with the second component staying at $0$, with $x_0=\begin{pmatrix}1 \\1\end{pmatrix}$. Therefore
-                        \[
-                              x_k=\begin{pmatrix}
-                                    \frac{1}{2^k} \\0
-                              \end{pmatrix}.
-                        \]
-                  \item After how many iterations, we have $\norm{x_k-x^*}_2<\frac{1}{100}$.\\
-                        \textbf{Answer}: We have $\frac{1}{2^k}<\frac{1}{100}\implies 2^k>100\implies k=7$, therefore we have $\norm{x_k-x^*}_2<\frac{1}{100}$ after $7$ iterations.
-                  \item What's the convergence rate of the sequence $\{\norm{x_k-\bm{x^*}}_2\}$? (sublinear/linear/quadratic)\\
-                        \textbf{Answer}: We have $\mathlarger{\lim_{k\rightarrow\infty}}\dfrac{\norm{x_{k+1}-\bm{x^*}}_2}{\norm{x_k-\bm{x^*}}_2}=\dfrac{1}{2}$, so it is linear.
-            \end{enumerate}
-      \item Consider the function \[f(x)=\dfrac{1}{2}x^T\begin{pmatrix}1&0\\0&2\end{pmatrix}x\]
-            \begin{enumerate}
-                  \item Write down the first iteration of Newton's method and starting point $x_0=\begin{pmatrix}1\\1\end{pmatrix}$.\\
-                        \textbf{Answer}: Let $x=\begin{pmatrix}
-                                    p \\q
-                              \end{pmatrix}$, we have \[
-                              f(x)=\dfrac{1}{2}\begin{pmatrix}
-                                    p \\q
-                              \end{pmatrix}^T\begin{pmatrix}
-                                    1 & 0 \\0&2
-                              \end{pmatrix}\begin{pmatrix}
-                                    p \\q
-                              \end{pmatrix}=\dfrac{1}{2}p^2+q^2,\] therefore, \[
-                              \nabla f(x)=\begin{pmatrix}
-                                    p \\2q
-                              \end{pmatrix}
-                              \text{ and }
-                              \nabla^2 f(x)=\begin{pmatrix}
-                                    1 & 0 \\
-                                    0 & 2
-                              \end{pmatrix}.
-                        \] Then our search direction is \[
-                              d_0^N=-\nabla^2f(x_0)^{-1}\nabla f(x_0)=-\begin{pmatrix}
-                                    1 & 0 \\0&\dfrac{1}{2}
-                              \end{pmatrix}\begin{pmatrix}
-                                    1 \\2
-                              \end{pmatrix}=\begin{pmatrix}
-                                    -1 \\-1
-                              \end{pmatrix},
-                        \] so \[
-                              x_1=x_0+d_0^N=\begin{pmatrix}
-                                    1 \\1
-                              \end{pmatrix}+\begin{pmatrix}
-                                    -1 \\-1
-                              \end{pmatrix}=\begin{pmatrix}
-                                    0 \\0
-                              \end{pmatrix}.
-                        \]
-                  \item Write down the closed-form expression of $x_k$ in the $k$th iteration of Newton's method for any positive integer $k$.\\
-                        \textbf{Answer}: \[
-                              x_{k+1}=x_k+d_k^N=\begin{pmatrix}
-                                    x_{k_1} \\x_{k_2}
-                              \end{pmatrix}-\begin{pmatrix}
-                                    1 & 0 \\0&\dfrac{1}{2}
-                              \end{pmatrix}\begin{pmatrix}
-                                    x_{k_1} \\2x_{k_2}
-                              \end{pmatrix}=\begin{pmatrix}
-                                    0 \\0
-                              \end{pmatrix}.
-                        \]
-                  \item After how many iterations, we have $\norm{x_k-x^*}_2<\frac{1}{100}$.\\
-                        \textbf{Answer}: As shown in part (a), $x_1=\bm{0}$. Therefore we have $\norm{x_k-x^*}_2<\frac{1}{100}$ after one iteration.
-            \end{enumerate}
+      \item
 \end{enumerate}
 \end{document}

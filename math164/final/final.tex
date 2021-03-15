@@ -1,0 +1,140 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{relsize}
+\usepackage{graphicx}
+
+\title{Math 164 Midterm}
+\date{2/19/2021}
+\author{Jiaping Zeng}
+
+\begin{document}
+\setstretch{1.35}
+
+\begin{enumerate}
+    \item Assume $x,y,w,z\in\mathbb{R}^n$ and $A\in\mathbb{R}^{n\cross n}$. Denote $\langle A,B\rangle=\sum_{i=1}^n\sum_{j=1}^n A(i,j)B(i,j)$ as the inner product in the Euclidean space.
+          \begin{enumerate}
+              \item Prove $x^TAy=\tr(Ayx^T)$.\\
+                    \textbf{Answer}: We have $\tr(Ayx^T)=\tr(x^TAy)$, but $x^TAy$ is a scalar so $\tr(x^TAy)=x^TAy$. Therefore $x^TAy=\tr(Ayx^T)$.
+              \item Prove $\langle xy^T,wz^T\rangle=(x^Tw)(y^Tz)$.\\
+                    \textbf{Answer}: We can expand the left hand side as follows:
+                    \begin{align*}
+                        \langle xy^T,wz^T\rangle & =\langle\begin{pmatrix}
+                            x_1y_1 & \cdots & x_1y_n \\
+                            \vdots & \ddots & \vdots \\
+                            x_ny_1 & \cdots & x_ny_n
+                        \end{pmatrix},\begin{pmatrix}
+                            w_1z_1 & \cdots & w_1z_n \\
+                            \vdots & \ddots & \vdots \\
+                            w_nz_1 & \cdots & w_nz_n
+                        \end{pmatrix}\rangle \\
+                                                 & =x_1y_1w_1z_1+x_1y_2w_1y_2+\cdots+x_1y_nw_1sz_n                    \\
+                                                 & \quad+x_2y_1w_2z_1+x_2y_2w_2z_2+\cdots+x_2y_nw_2sz_n               \\
+                                                 & \quad\;\:\vdots                                                    \\
+                                                 & \quad+x_ny_1w_nz_1+x_ny_2w_nz_2+\cdots+x_ny_nw_nz_n                \\
+                                                 & =x_1w_1(y_1z_1+y_2z_2+\cdots+y_nz_n)                               \\
+                                                 & \quad+x_2w_2(y_1z_1+y_2z_2+\cdots+y_nz_n)                          \\
+                                                 & \quad\;\:\vdots                                                    \\
+                                                 & \quad+x_nw_n(y_1z_1+y_2z_2+\cdots+y_nz_n)                          \\
+                                                 & =(x_1w_1+x_2w_2+\cdots+x_nw_n)(y_1z_1+y_2z_2+\cdots+y_nz_n)        \\
+                                                 & =(x^Tw)(y^Tz)
+                    \end{align*}
+                    Therefore the two sides are equal, so $\langle xy^T,wz^T\rangle=(x^Tw)(y^Tz)$.
+          \end{enumerate}
+          \newpage
+    \item Let $A\in\mathbb{R}^{n\cross n}$ be a symmetric matrix and $I_n$ be an identity matrix in $\mathbb{R}^{n\cross n}$. Let $\lambda_1,\ldots,\lambda_n$ be $n$ eigenvalues of $A$ with corresponding eigenvectors $u_1,u_2,\ldots,u_n$.
+          \begin{enumerate}
+              \item Prove $u_i$ is an eigenvector of $A-3I_n$ for $i=1,\ldots,n$.\\
+                    \textbf{Answer}: By definition of eigenvalue, we have $Au_i=\lambda_iu_i$; we can subtract $3u_i$ from both sides: \[Au_i-3u_i=\lambda_iu_i-3u_i\implies(A-3I_n)u_i=(\lambda_i-3)u_i.\] Therefore by definition $u_i$ is an eigenvector of $(A-3I_n)$ with corresponding eigenvalue $\lambda_i-3$.
+              \item Prove $u_i$ is an eigenvector of $(A-I_n)(A-3I_n)$ for $i=1,\ldots,n$.\\
+                    \textbf{Answer}: From part (a) we have $(A-3I_n)u_i=(\lambda_i-3)u_i$, following the same procedure we also have $(A-I_n)u_i=(\lambda_i-1)u_i$. Then \begin{align*}
+                        (A-I_n)(A-3I_n)u_i & =(A-I_n)[(A-3I_n)u_i]           \\
+                                           & =(A-I_n)(\lambda_i-3)u_i        \\
+                                           & =(\lambda_i-3)[(A-I_n)u_i]      \\
+                                           & =(\lambda_i-3)(\lambda_i-1)u_i.
+                    \end{align*}
+                    Therefore by definition $u_i$ is an eigenvector of $(A-I_n)(A-3I_n)$ with corresponding eigenvalue $(\lambda_i-3)(\lambda_i-1)$.
+              \item Compute $\tr((A-I_n)(A-3I_n))$.\\
+                    \textbf{Answer}: By part (b) the eigenvalues of $(A-I_n)(A-3I_n)$ are $(\lambda_i-3)(\lambda_i-1)$ for $i=1,\ldots,n$. Then since the trace of a square matrix is the sum of its eigenvalues, we have \[\tr((A-I_n)(A-3I_n))=\sum_{i=1}^n(\lambda_i-3)(\lambda_i-1).\]
+              \item Compute $\det((A+I_n)(A-3I_n))$.\\
+                    \textbf{Answer}: Following the same procedure as part (b) we know that the eigenvalues of $(A+I_n)(A-3I_n)$ are $(\lambda_i-3)(\lambda_i+1)$ for $i=1,\ldots,n$. Then since the determinant of a square matrix is the product of its eigenvalues, we have \[\det((A+I_n)(A-3I_n))=\prod_{i=1}^n(\lambda_i-3)(\lambda_i+1).\]
+          \end{enumerate}
+          \newpage
+    \item Denote $e_i$ as the $i$th column of the identity matrix $I_n\in\mathbb{R}^{n\cross n}$ for $i=1,\ldots,n$. Let $f(x)=\sum_{i=1}^{10}\norm{x-e_i}_2^2$ where $x\in\mathbb{R}^n$.
+          \begin{enumerate}
+              \item Compute $\nabla f(x)$.\\
+                    \textbf{Answer}: \[
+                        Df(x)=2\sum_{i=1}^{10}(x-e_i)\implies\nabla f(x)=2\sum_{i=1}^{10}(x-e_i)^T
+                    \]
+              \item Compute $\nabla^2 f(x)$.\\
+                    \textbf{Answer}: \[
+                        \nabla^2 f(x)=D(\nabla f(x))=2\sum_{i=1}^{10}1=20
+                    \]
+              \item Show $f(x)$ is a convex function.\\
+                    \textbf{Answer}: By part (b), the Hessian is positive semidefinite. Therefore $f(x)$ is convex.
+              \item Find the global optimal solution of $\min_xf(x)$.\\
+                    \textbf{Answer}: Solving $\nabla f(x)=0$ gives us \[
+                        2\sum_{i=1}^{10}(x-e_i)^T=0\implies\sum_{i=1}^{10}x=\sum_{i=1}^{10}e_i\implies x=\frac{1}{10}\sum_{i=1}^{10}e_i=\begin{pmatrix}
+                            \frac{1}{10}\\
+                            \vdots\\
+                            \frac{1}{10}
+                        \end{pmatrix}.
+                    \]
+          \end{enumerate}
+          \newpage
+    \item Let $f(x)=\frac{1}{2}\norm{Ax-b}_2^2+\frac{1}{2}\norm{x}_2^2$ where $A\in\mathbb{R}^{10\cross 5}$, $x\in\mathbb{R}^5$ and $b\in\mathbb{R}^{10}$.
+          \begin{enumerate}
+              \item Prove $\nabla f(x)$ is Lipschitz continuous with Lipschitz constant $L=\norm{A^TA}+1$.\\
+                    \textbf{Answer}: We have \[Df(x)=(Ax-b)A+x=A^2x-Ab+x\implies\nabla f(x)=(A^2x-Ab+x)^T\] and \[\nabla^2 f(x)=D^2f(x)=A^2+1=\norm{A^TA}+1.\] Therefore $\nabla f(x)$ is Lipschitz continuous with Lipschitz constant $L=\norm{A^TA}+1$.
+              \item Write down the $k$th iteration of the gradient descent method.\\
+                    \textbf{Answer}: We have \begin{align*}
+                        x_k & =x_{k-1}-\dfrac{1}{L}\nabla f(x_{k-1})                     \\
+                            & =x_{k-1}-\dfrac{(A^2x_{k-1}-Ab+x_{k-1})^T}{\norm{A^TA}+1}.
+                    \end{align*}
+              \item Write down the $k$th iteration of Newton's method.\\
+                    \textbf{Answer}: Our search direction is
+                    \begin{align*}
+                        d_{k-1}^N & =-\nabla^2f(x_{k-1})^{-1}\nabla f(x_{k-1}) \\
+                                  & =-(A^2+1)(A^2x_{k-1}-Ab+x_{k-1})^T
+                    \end{align*}
+                    So
+                    \begin{align*}
+                        x_k & =x_{k-1}+ d_{k-1}^N                        \\
+                            & =x_{k-1}-(A^2+1)(A^2x_{k-1}-Ab+x_{k-1})^T.
+                    \end{align*}
+          \end{enumerate}
+          \newpage
+    \item Judge the following sets are whether convex or not.
+          \begin{enumerate}
+              \item $\Omega=\{(x_1,x_2):\abs{x_1}+\abs{x_2}\leq 1\}$\\
+                    \textbf{Answer}: Take $(x_1,x_2),(y_1,y_2)\in\Omega$ and $\alpha\in[0,1]$, we have \[\abs{x_1}+\abs{x_2}\leq 1\implies\alpha(\abs{x_1}+\abs{x_2})\leq\alpha\] and \[\abs{y_1}+\abs{y_2}\leq 1\implies(1-\alpha)(\abs{y_1}+\abs{y_2})\leq 1-\alpha.\] Adding the two gives us \[\alpha(\abs{x_1}+\abs{x_2})+(1-\alpha)(\abs{y_1}+\abs{y_2})\leq\alpha+(1-\alpha)\]\[\implies\alpha(\abs{x_1}+\abs{x_2})+(1-\alpha)(\abs{y_1}+\abs{y_2})\leq 1.\] So $\alpha(x_1,x_2)+(1-\alpha)(y_1,y_2)\in\Omega$ and therefore $\Omega$ is a convex set.
+              \item $\Omega=\{(x_1,x_2):x_1^2+x_2^2\geq 1\}$\\
+                    \textbf{Answer}: Take $(x_1,x_2),(y_1,y_2)\in\Omega$ and $\alpha\in[0,1]$, we have \[x_1^2+x_2^2\geq 1\implies\alpha(x_1^2+x_2^2)\geq\alpha\] and \[y_1^2+y_2^2\geq 1\implies(1-\alpha)(y_1^2+y_2^2)\geq 1-\alpha.\] Adding the two gives us \[\alpha(x_1^2+x_2^2)+(1-\alpha)(y_1^2+y_2^2)\geq\alpha+(1-\alpha)\]\[\implies\alpha(x_1^2+x_2^2)+(1-\alpha)(y_1^2+y_2^2)\geq 1.\] So $\alpha(x_1,x_2)+(1-\alpha)(y_1,y_2)\in\Omega$ and therefore $\Omega$ is a convex set.
+              \item $\Omega=\{(x_1,x_2):x_1^2+x_2^2\leq 1,x_1+x_2\geq 0\}$\\
+                    \textbf{Answer}: Take $(x_1,x_2),(y_1,y_2)\in\Omega$ and $\alpha\in[0,1]$, we have \[x_1^2+x_2^2\leq 1\implies\alpha(x_1^2+x_2^2)\leq\alpha,\]\[x_1+x_2\geq 0\implies\alpha(x_1+x_2)\geq 0\] and \[y_1^2+y_2^2\leq 1\implies(1-\alpha)(y_1^2+y_2^2)\leq 1-\alpha,\]\[y_1+y_2\geq 0\implies(1-\alpha)(y_1+y_2)\geq 0.\] Adding the two gives us \[\alpha(x_1^2+x_2^2)+(1-\alpha)(y_1^2+y_2^2)\geq\alpha+(1-\alpha)\implies\alpha(x_1^2+x_2^2)+(1-\alpha)(y_1^2+y_2^2)\geq 1,\]\[\alpha(x_1+x_2)+(1-\alpha)(y_1+y_2)\geq 0\] So $\alpha(x_1,x_2)+(1-\alpha)(y_1,y_2)\in\Omega$ and therefore $\Omega$ is a convex set.
+          \end{enumerate}
+          \newpage
+    \item Consider \[\min_{x_1,x_2}x_1^2+2x_2^2 \text{ s.t. } x_1+x_2=1\]
+          \begin{enumerate}
+              \item Write down the KKT conditions.\\
+                    \textbf{Answer}: \[
+                        L(x,\lambda)=x_1^2+2x_2^2-\lambda(x_1+x_2-1)=0\]\[\implies\frac{\delta L}{\delta x_1}=2x_1-\lambda,\frac{\delta L}{\delta x_2}=4x_2-\lambda
+                    \] Then we have \begin{align*}
+                        ZG & : \nabla L(x^*,\lambda^*)=0\implies 2x^*_1-\lambda^*=0,4x^*_2-\lambda^*=0 \\
+                        PF & : c(x^*)=0\implies x^*_1+x^*_2-1=0                                        \\
+                        DF & : \lambda^*\geq 0                                                         \\
+                        CS & : \lambda^*c(x^*)=0\implies\lambda(x^*_1+x^*_2-1)=0.
+                    \end{align*}
+              \item Find the KKT points.\\
+                    \textbf{Answer}: From ZG we have \[
+                        2x^*_1-\lambda^*=0,4x^*_2-\lambda^*=0\implies 2x^*_1=4x^*_2=\lambda^*\implies x^*_1=2x^*_2,
+                    \] then we can substitute into PF which gives us \[
+                        x^*_1+x^*_2-1=0\implies x^*_1=\frac{2}{3},x^*_2=\frac{1}{3}.
+                    \]
+          \end{enumerate}
+\end{enumerate}
+\end{document}

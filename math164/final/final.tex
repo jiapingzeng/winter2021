@@ -32,8 +32,8 @@
                             \vdots & \ddots & \vdots \\
                             w_nz_1 & \cdots & w_nz_n
                         \end{pmatrix}\rangle \\
-                                                 & =x_1y_1w_1z_1+x_1y_2w_1y_2+\cdots+x_1y_nw_1sz_n                    \\
-                                                 & \quad+x_2y_1w_2z_1+x_2y_2w_2z_2+\cdots+x_2y_nw_2sz_n               \\
+                                                 & =x_1y_1w_1z_1+x_1y_2w_1y_2+\cdots+x_1y_nw_1z_n                    \\
+                                                 & \quad+x_2y_1w_2z_1+x_2y_2w_2z_2+\cdots+x_2y_nw_2z_n               \\
                                                  & \quad\;\:\vdots                                                    \\
                                                  & \quad+x_ny_1w_nz_1+x_ny_2w_nz_2+\cdots+x_ny_nw_nz_n                \\
                                                  & =x_1w_1(y_1z_1+y_2z_2+\cdots+y_nz_n)                               \\
@@ -78,11 +78,7 @@
                     \textbf{Answer}: By part (b), the Hessian is positive semidefinite. Therefore $f(x)$ is convex.
               \item Find the global optimal solution of $\min_xf(x)$.\\
                     \textbf{Answer}: Solving $\nabla f(x)=0$ gives us \[
-                        2\sum_{i=1}^{10}(x-e_i)^T=0\implies\sum_{i=1}^{10}x=\sum_{i=1}^{10}e_i\implies x=\frac{1}{10}\sum_{i=1}^{10}e_i=\begin{pmatrix}
-                            \frac{1}{10}\\
-                            \vdots\\
-                            \frac{1}{10}
-                        \end{pmatrix}.
+                        2\sum_{i=1}^{10}(x-e_i)^T=0\implies\sum_{i=1}^{10}x=\sum_{i=1}^{10}e_i\implies x=\frac{1}{10}\sum_{i=1}^{10}e_i.
                     \]
           \end{enumerate}
           \newpage
@@ -99,12 +95,12 @@
                     \textbf{Answer}: Our search direction is
                     \begin{align*}
                         d_{k-1}^N & =-\nabla^2f(x_{k-1})^{-1}\nabla f(x_{k-1}) \\
-                                  & =-(A^2+1)(A^2x_{k-1}-Ab+x_{k-1})^T
+                                  & =-(A^2+1)^{-1}(A^2x_{k-1}-Ab+x_{k-1})^T
                     \end{align*}
                     So
                     \begin{align*}
                         x_k & =x_{k-1}+ d_{k-1}^N                        \\
-                            & =x_{k-1}-(A^2+1)(A^2x_{k-1}-Ab+x_{k-1})^T.
+                            & =x_{k-1}-(A^2+1)^{-1}(A^2x_{k-1}-Ab+x_{k-1})^T.
                     \end{align*}
           \end{enumerate}
           \newpage
